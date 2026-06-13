@@ -1,0 +1,74 @@
+:root {
+    --primary-color: #ff6600;
+    --bg-color: #f9f9f9;
+    --text-dark: #333;
+    --text-light: #777;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+
+body {
+    background-color: #e0e0e0; /* Background for desktop view */
+    display: flex;
+    justify-content: center;
+}
+
+#app-container {
+    width: 100%;
+    max-width: 400px; /* Mobile width */
+    height: 100vh;
+    background: #fff;
+    position: relative;
+    overflow-y: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.screen { display: none; padding: 20px; }
+.screen.active { display: block; }
+
+/* Typography & Colors */
+.text-orange { color: var(--primary-color); }
+h1, h2, h3, h4 { color: var(--text-dark); }
+
+/* Buttons */
+.btn-primary {
+    width: 100%;
+    padding: 15px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+}
+.btn-add {
+    padding: 8px 15px;
+    background: #ffe5d0;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.btn-back { background: none; border: none; font-size: 16px; color: var(--text-dark); cursor: pointer; }
+
+/* Welcome Screen Specifics */
+#welcome-screen { text-align: center; padding-top: 50px; }
+.logo { margin-bottom: 30px; }
+.table-card { border: 2px solid #eee; border-radius: 10px; padding: 20px; margin: 30px 0; }
+
+/* Menu Screen Specifics */
+header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.categories { display: flex; gap: 10px; overflow-x: auto; margin-bottom: 20px; padding-bottom: 5px; }
+.cat { padding: 10px 15px; background: #eee; border-radius: 20px; white-space: nowrap; font-size: 14px; }
+.cat.active { background: var(--primary-color); color: white; }
+.menu-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #eee; }
+.price { font-weight: bold; color: var(--text-dark); margin-top: 5px; }
+
+/* Cart Screen Specifics */
+.cart-item { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px dashed #ccc; }
+.bill-details { margin-top: 30px; background: #f9f9f9; padding: 15px; border-radius: 8px; }
+.row { display: flex; justify-content: space-between; margin-bottom: 10px; color: var(--text-light); }
+.row.total { font-weight: bold; color: var(--text-dark); font-size: 18px; border-top: 1px solid #ddd; padding-top: 10px; }
