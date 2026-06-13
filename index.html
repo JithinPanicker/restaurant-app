@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Spice Delight</title>
-    <!-- Importing Poppins Font to match the exact design -->
+    <title>Spice Delight - Welcome</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
@@ -12,12 +11,10 @@
 </head>
 <body>
     <div id="app-container">
-        
         <!-- WELCOME SCREEN -->
         <section id="welcome-screen" class="screen active">
             <div class="welcome-content">
                 <div class="logo-container">
-                    <!-- Your Logo Image -->
                     <img src="restaurent-logo.png" alt="Spice Delight Logo" class="main-logo">
                     <h2 class="brand-name">Spice Delight</h2>
                     <p class="brand-subtext">— Family Restaurant —</p>
@@ -31,70 +28,12 @@
                     <h1 class="table-number text-orange">05</h1>
                 </div>
                 
-                <button class="btn-primary" onclick="showScreen('menu-screen')">VIEW MENU</button>
+                <!-- Links to the new HTML file -->
+                <button class="btn-primary" onclick="window.location.href='menu.html'">VIEW MENU</button>
             </div>
             
-            <!-- Your Bottom Food Image -->
             <img src="welcome-food-image.png" alt="Delicious Food" class="welcome-bottom-image">
         </section>
-
-        <!-- MENU SCREEN (Unchanged functionally, uses new font) -->
-        <section id="menu-screen" class="screen">
-            <header>
-                <h2>Menu</h2>
-                <div class="cart-icon" onclick="showScreen('cart-screen')">🛒 <span id="cart-count">0</span></div>
-            </header>
-            
-            <div class="categories">
-                <div class="cat active">Starters</div>
-                <div class="cat">Main Course</div>
-                <div class="cat">Beverages</div>
-            </div>
-
-            <h3 class="section-title">Main Course</h3>
-            <div class="menu-list">
-                <div class="menu-item">
-                    <div class="item-info">
-                        <h4>Chicken Biryani</h4>
-                        <p class="price">₹180</p>
-                    </div>
-                    <button class="btn-add" onclick="addToCart('Chicken Biryani', 180)">ADD</button>
-                </div>
-                <div class="menu-item">
-                    <div class="item-info">
-                        <h4>Paneer Butter Masala</h4>
-                        <p class="price">₹160</p>
-                    </div>
-                    <button class="btn-add" onclick="addToCart('Paneer Butter Masala', 160)">ADD</button>
-                </div>
-                <div class="menu-item">
-                    <div class="item-info">
-                        <h4>Lemon Tea</h4>
-                        <p class="price">₹40</p>
-                    </div>
-                    <button class="btn-add" onclick="addToCart('Lemon Tea', 40)">ADD</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- CART SCREEN (Unchanged functionally, uses new font) -->
-        <section id="cart-screen" class="screen">
-            <header>
-                <button class="btn-back" onclick="showScreen('menu-screen')">❮ Back</button>
-                <h2>Your Cart</h2>
-            </header>
-            
-            <div id="cart-items" class="cart-list"></div>
-
-            <div class="bill-details">
-                <div class="row"><span>Subtotal</span> <span id="subtotal">₹0</span></div>
-                <div class="row"><span>Taxes & Charges</span> <span>₹30</span></div>
-                <div class="row total"><span>Total</span> <span id="total-amount">₹0</span></div>
-            </div>
-
-            <button class="btn-primary" onclick="placeOrder()">PLACE ORDER</button>
-        </section>
-
     </div>
     <script src="app.js"></script>
 </body>

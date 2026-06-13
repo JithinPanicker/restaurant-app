@@ -1,15 +1,22 @@
-// 1. Changed v1 to v2 to force the app to update
-const CACHE_NAME = 'spice-delight-v2'; 
+const CACHE_NAME = 'spice-delight-v3'; 
 
 const assets = [
   './',
   './index.html',
+  './menu.html',
   './style.css',
   './app.js',
   './manifest.json',
-  // 2. Added your new image files below so they load offline
   './restaurent-logo.png',
-  './welcome-food-image.png' 
+  './welcome-food-image.png',
+  './menu-images/starters.png',
+  './menu-images/Main-course.png',
+  './menu-images/Beverages.png',
+  './menu-images/Desserts.png',
+  './menu-images/Chicken-biriyani.png',
+  './menu-images/Paneer-Butter-Masala.png',
+  './menu-images/Veg-Fried-Rice.png',
+  './menu-images/Chicken-Curry.png'
 ];
 
 self.addEventListener('install', evt => {
@@ -20,7 +27,6 @@ self.addEventListener('install', evt => {
   );
 });
 
-// Delete old caches so the phone doesn't get confused
 self.addEventListener('activate', evt => {
     evt.waitUntil(
         caches.keys().then(keys => {

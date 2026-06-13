@@ -1,13 +1,16 @@
-let cart = [];
-const TAX = 30;
+// Load cart from phone's local storage or start empty
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-// Screen Navigation
-function showScreen(screenId) {
-    document.querySelectorAll('.screen').forEach(screen => {
-        screen.classList.remove('active');
-    });
-    document.getElementById(screenId).classList.add('active');
-    if(screenId === 'cart-screen') renderCart();
+// Update badge as soon as the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartCount();
+});
+
+function updateCartCount() {
+    const countEl = document.getElementById('cart-count');
+    if(countEl) {
+        countEl.innerText = cart.reduce((sum, item) => sum + item.quantity, 0);
+    }
 }
 
 // Add to Cart Logic
@@ -18,44 +21,10 @@ function addToCart(name, price) {
     } else {
         cart.push({ name, price, quantity: 1 });
     }
-    document.getElementById('cart-count').innerText = cart.reduce((sum, item) => sum + item.quantity, 0);
-    alert(name + " added to cart!");
-}
-
-// Render Cart
-function renderCart() {
-    const cartItemsContainer = document.getElementById('cart-items');
-    cartItemsContainer.innerHTML = '';
-    let subtotal = 0;
-
-    if(cart.length === 0) {
-        cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
-    } else {
-        cart.forEach((item, index) => {
-            subtotal += item.price * item.quantity;
-            cartItemsContainer.innerHTML += `
-                <div class="cart-item">
-                    <div>
-                        <h4>${item.name}</h4>
-                        <p class="price">₹${item.price} x ${item.quantity}</p>
-                    </div>
-                    <p class="price">₹${item.price * item.quantity}</p>
-                </div>
-            `;
-        });
-    }
-
-    document.getElementById('subtotal').innerText = '₹' + subtotal;
-    let total = subtotal > 0 ? subtotal + TAX : 0;
-    document.getElementById('total-amount').innerText = '₹' + total;
-}
-
-function placeOrder() {
-    if(cart.length === 0) return alert("Add items to cart first!");
-    alert("Order Placed Successfully! (This is a frontend prototype)");
-    cart = [];
-    document.getElementById('cart-count').innerText = 0;
-    showScreen('welcome-screen');
+    
+    // Save to phone's storage
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
 }
 
 // PWA Service Worker Registration

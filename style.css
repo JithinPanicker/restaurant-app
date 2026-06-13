@@ -157,3 +157,68 @@ header { display: flex; justify-content: space-between; align-items: center; mar
 .bill-details { margin-top: 30px; background: #f9f9f9; padding: 15px; border-radius: 8px; }
 .row { display: flex; justify-content: space-between; margin-bottom: 10px; color: var(--text-light); }
 .row.total { font-weight: bold; color: var(--text-dark); font-size: 18px; border-top: 1px solid #ddd; padding-top: 10px; }
+/* =========================================
+   NEW MENU PAGE STYLES
+========================================= */
+.menu-body { background-color: #f9f9f9; }
+.menu-container { padding: 20px; background: #ffffff; display: block; overflow-y: auto; }
+
+.top-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.hamburger { font-size: 24px; cursor: pointer; color: var(--text-dark); }
+.header-title { font-size: 18px; font-weight: 600; }
+.cart-icon { position: relative; font-size: 20px; cursor: pointer; }
+.cart-badge {
+    position: absolute; top: -8px; right: -10px;
+    background: var(--primary-color); color: white;
+    font-size: 10px; font-weight: bold;
+    padding: 2px 6px; border-radius: 50%;
+}
+
+.search-bar {
+    display: flex; align-items: center;
+    background: #f5f5f5; border-radius: 10px;
+    padding: 12px 15px; margin-bottom: 20px;
+}
+.search-icon { color: #888; margin-right: 10px; font-size: 16px; }
+.search-bar input {
+    border: none; background: transparent; width: 100%;
+    font-size: 14px; outline: none; color: var(--text-dark);
+}
+
+.action-row { display: flex; justify-content: flex-end; margin-bottom: 25px; }
+.btn-call-waiter {
+    background: #fff; color: var(--primary-color);
+    border: 1px solid var(--primary-color); border-radius: 8px;
+    padding: 8px 15px; font-size: 13px; font-weight: 600;
+    cursor: pointer; display: flex; align-items: center; gap: 5px;
+}
+
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.section-header h3 { font-size: 16px; font-weight: 700; }
+.view-all { font-size: 12px; font-weight: 600; color: var(--text-dark); cursor: pointer; }
+
+.category-grid {
+    display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 25px;
+}
+.category-grid::-webkit-scrollbar { display: none; }
+.category-item { text-align: center; min-width: 70px; cursor: pointer; }
+.cat-img-box {
+    background: #fff; border-radius: 12px; padding: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 8px;
+    display: flex; justify-content: center; align-items: center;
+}
+.cat-img-box img { width: 40px; height: 40px; object-fit: contain; }
+.category-item p { font-size: 11px; font-weight: 600; color: var(--text-dark); }
+
+.menu-list-item {
+    display: flex; align-items: center; margin-bottom: 20px;
+}
+.dish-img { width: 70px; height: 70px; border-radius: 12px; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
+.dish-info { flex-grow: 1; margin-left: 15px; }
+.dish-info h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.dish-info .price { font-size: 14px; font-weight: 700; color: var(--text-dark); }
+.btn-add-solid {
+    background: var(--primary-color); color: white; border: none;
+    padding: 6px 18px; border-radius: 6px; font-size: 12px;
+    font-weight: 700; cursor: pointer; box-shadow: 0 2px 8px rgba(240, 90, 40, 0.3);
+}

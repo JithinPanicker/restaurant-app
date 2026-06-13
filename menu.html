@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Spice Delight - Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body class="menu-body">
+    <div id="app-container" class="menu-container">
+        
+        <!-- TOP HEADER -->
+        <header class="top-header">
+            <div class="hamburger">☰</div>
+            <h2 class="header-title">Menu</h2>
+            <div class="cart-icon">
+                🛒 <span id="cart-count" class="cart-badge">0</span>
+            </div>
+        </header>
+
+        <!-- SEARCH BAR -->
+        <div class="search-bar">
+            <span class="search-icon">🔍</span>
+            <input type="text" placeholder="Search for dishes...">
+        </div>
+
+        <!-- CALL WAITER BUTTON -->
+        <div class="action-row">
+            <button class="btn-call-waiter">📞 Call Waiter</button>
+        </div>
+
+        <!-- CATEGORIES -->
+        <div class="section-header">
+            <h3>Categories</h3>
+            <span class="view-all">View All</span>
+        </div>
+        <div class="category-grid">
+            <div class="category-item">
+                <div class="cat-img-box"><img src="menu-images/starters.png" alt="Starters"></div>
+                <p>Starters</p>
+            </div>
+            <div class="category-item">
+                <div class="cat-img-box"><img src="menu-images/Main-course.png" alt="Main Course"></div>
+                <p>Main Course</p>
+            </div>
+            <div class="category-item">
+                <div class="cat-img-box"><img src="menu-images/Beverages.png" alt="Beverages"></div>
+                <p>Beverages</p>
+            </div>
+            <div class="category-item">
+                <div class="cat-img-box"><img src="menu-images/Desserts.png" alt="Desserts"></div>
+                <p>Desserts</p>
+            </div>
+        </div>
+
+        <!-- MAIN COURSE LIST -->
+        <div class="section-header">
+            <h3>Main Course</h3>
+        </div>
+        <div class="menu-list">
+            
+            <div class="menu-list-item">
+                <img src="menu-images/Chicken-biriyani.png" alt="Chicken Biryani" class="dish-img">
+                <div class="dish-info">
+                    <h4>Chicken Biryani</h4>
+                    <p class="price">₹180</p>
+                </div>
+                <button class="btn-add-solid" onclick="addToCart('Chicken Biryani', 180)">ADD</button>
+            </div>
+
+            <div class="menu-list-item">
+                <img src="menu-images/Paneer-Butter-Masala.png" alt="Paneer Butter Masala" class="dish-img">
+                <div class="dish-info">
+                    <h4>Paneer Butter Masala</h4>
+                    <p class="price">₹160</p>
+                </div>
+                <button class="btn-add-solid" onclick="addToCart('Paneer Butter Masala', 160)">ADD</button>
+            </div>
+
+            <div class="menu-list-item">
+                <img src="menu-images/Veg-Fried-Rice.png" alt="Veg Fried Rice" class="dish-img">
+                <div class="dish-info">
+                    <h4>Veg Fried Rice</h4>
+                    <p class="price">₹140</p>
+                </div>
+                <button class="btn-add-solid" onclick="addToCart('Veg Fried Rice', 140)">ADD</button>
+            </div>
+
+            <div class="menu-list-item">
+                <img src="menu-images/Chicken-Curry.png" alt="Chicken Curry" class="dish-img">
+                <div class="dish-info">
+                    <h4>Chicken Curry</h4>
+                    <p class="price">₹170</p>
+                </div>
+                <button class="btn-add-solid" onclick="addToCart('Chicken Curry', 170)">ADD</button>
+            </div>
+
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
