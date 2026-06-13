@@ -1,30 +1,38 @@
 :root {
-    --primary-color: #ff6600;
-    --bg-color: #f9f9f9;
-    --text-dark: #333;
-    --text-light: #777;
+    --primary-color: #F05A28; /* Adjusted to match the specific orange in your design */
+    --bg-color: #ffffff;
+    --text-dark: #222222;
+    --text-light: #666666;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Poppins', sans-serif; /* Applied exact matching font */
+}
 
 body {
-    background-color: #e0e0e0; /* Background for desktop view */
+    background-color: #e0e0e0;
     display: flex;
     justify-content: center;
 }
 
 #app-container {
     width: 100%;
-    max-width: 400px; /* Mobile width */
+    max-width: 400px;
     height: 100vh;
-    background: #fff;
+    background: var(--bg-color);
     position: relative;
     overflow-y: auto;
+    overflow-x: hidden;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
 }
 
-.screen { display: none; padding: 20px; }
-.screen.active { display: block; }
+.screen { display: none; height: 100%; position: relative; }
+.screen.active { display: flex; flex-direction: column; }
 
 /* Typography & Colors */
 .text-orange { color: var(--primary-color); }
@@ -32,42 +40,119 @@ h1, h2, h3, h4 { color: var(--text-dark); }
 
 /* Buttons */
 .btn-primary {
-    width: 100%;
+    width: 90%;
     padding: 15px;
     background: var(--primary-color);
     color: white;
     border: none;
     border-radius: 8px;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 600; /* Made slightly thicker to match design */
     cursor: pointer;
-    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(240, 90, 40, 0.2); /* Soft orange shadow */
 }
-.btn-add {
-    padding: 8px 15px;
-    background: #ffe5d0;
+
+/* =========================================
+   WELCOME SCREEN SPECIFICS
+========================================= */
+#welcome-screen {
+    padding: 0; 
+    justify-content: space-between; /* Pushes content top, image bottom */
+    background: linear-gradient(to bottom, #ffffff 70%, #fffaf7 100%);
+}
+
+.welcome-content {
+    padding: 50px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    z-index: 2;
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.main-logo {
+    width: 90px; /* Adjust based on your logo file's proportion */
+    margin-bottom: 5px;
+}
+
+.brand-name {
     color: var(--primary-color);
-    border: 1px solid var(--primary-color);
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 2px;
 }
-.btn-back { background: none; border: none; font-size: 16px; color: var(--text-dark); cursor: pointer; }
 
-/* Welcome Screen Specifics */
-#welcome-screen { text-align: center; padding-top: 50px; }
-.logo { margin-bottom: 30px; }
-.table-card { border: 2px solid #eee; border-radius: 10px; padding: 20px; margin: 30px 0; }
+.brand-subtext {
+    color: var(--text-light);
+    font-size: 12px;
+    font-weight: 600;
+}
 
-/* Menu Screen Specifics */
+.welcome-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.welcome-instructions {
+    font-size: 14px;
+    color: var(--text-light);
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.table-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px 40px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06); /* Soft, exact drop shadow */
+    margin-bottom: 25px;
+    width: 80%;
+}
+
+.table-label {
+    font-size: 13px;
+    color: var(--text-light);
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.table-number {
+    font-size: 46px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.welcome-bottom-image {
+    width: 100%;
+    height: auto;
+    max-height: 25vh; /* Prevents it from taking up too much space on small screens */
+    object-fit: cover;
+    object-position: top;
+    margin-top: auto; /* Locks it to the absolute bottom */
+}
+
+
+/* =========================================
+   MENU & CART SCREEN (Existing Styles)
+========================================= */
+#menu-screen, #cart-screen { padding: 20px; }
 header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
 .categories { display: flex; gap: 10px; overflow-x: auto; margin-bottom: 20px; padding-bottom: 5px; }
 .cat { padding: 10px 15px; background: #eee; border-radius: 20px; white-space: nowrap; font-size: 14px; }
 .cat.active { background: var(--primary-color); color: white; }
 .menu-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #eee; }
 .price { font-weight: bold; color: var(--text-dark); margin-top: 5px; }
+.btn-add { padding: 8px 15px; background: #ffe5d0; color: var(--primary-color); border: 1px solid var(--primary-color); border-radius: 5px; cursor: pointer; font-weight: bold; }
+.btn-back { background: none; border: none; font-size: 16px; color: var(--text-dark); cursor: pointer; font-weight: 600;}
 
-/* Cart Screen Specifics */
 .cart-item { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px dashed #ccc; }
 .bill-details { margin-top: 30px; background: #f9f9f9; padding: 15px; border-radius: 8px; }
 .row { display: flex; justify-content: space-between; margin-bottom: 10px; color: var(--text-light); }
