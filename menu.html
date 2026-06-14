@@ -12,7 +12,6 @@
 <body class="menu-body">
     <div id="app-container" class="menu-container">
         
-        <!-- TOP HEADER -->
         <header class="top-header">
             <div class="hamburger">☰</div>
             <h2 class="header-title">Menu</h2>
@@ -21,18 +20,15 @@
             </div>
         </header>
 
-        <!-- SEARCH BAR -->
         <div class="search-bar">
             <span class="search-icon">🔍</span>
             <input type="text" placeholder="Search for dishes...">
         </div>
 
-        <!-- CALL WAITER BUTTON -->
         <div class="action-row">
             <button class="btn-call-waiter">📞 Call Waiter</button>
         </div>
 
-        <!-- CATEGORIES -->
         <div class="section-header">
             <h3>Categories</h3>
             <span class="view-all">View All</span>
@@ -56,7 +52,6 @@
             </div>
         </div>
 
-        <!-- MAIN COURSE LIST -->
         <div class="section-header">
             <h3>Main Course</h3>
         </div>
@@ -68,7 +63,8 @@
                     <h4>Chicken Biryani</h4>
                     <p class="price">₹180</p>
                 </div>
-                   <button class="btn-add-solid" onclick="window.location.href='food-details.html'">ADD</button>            </div>
+                <button class="btn-add-solid" onclick="window.location.href='food-details.html?id=chicken-biryani'">ADD</button>
+            </div>
 
             <div class="menu-list-item">
                 <img src="menu-images/Paneer-Butter-Masala.png" alt="Paneer Butter Masala" class="dish-img">
@@ -76,7 +72,7 @@
                     <h4>Paneer Butter Masala</h4>
                     <p class="price">₹160</p>
                 </div>
-                <button class="btn-add-solid" onclick="addToCart('Paneer Butter Masala', 160)">ADD</button>
+                <button class="btn-add-solid" onclick="window.location.href='food-details.html?id=paneer-butter-masala'">ADD</button>
             </div>
 
             <div class="menu-list-item">
@@ -85,7 +81,7 @@
                     <h4>Veg Fried Rice</h4>
                     <p class="price">₹140</p>
                 </div>
-                <button class="btn-add-solid" onclick="addToCart('Veg Fried Rice', 140)">ADD</button>
+                <button class="btn-add-solid" onclick="window.location.href='food-details.html?id=veg-fried-rice'">ADD</button>
             </div>
 
             <div class="menu-list-item">
@@ -94,7 +90,7 @@
                     <h4>Chicken Curry</h4>
                     <p class="price">₹170</p>
                 </div>
-                <button class="btn-add-solid" onclick="addToCart('Chicken Curry', 170)">ADD</button>
+                <button class="btn-add-solid" onclick="window.location.href='food-details.html?id=chicken-curry'">ADD</button>
             </div>
 
         </div>

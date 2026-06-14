@@ -18,14 +18,16 @@
                 <span class="icon-btn back-btn" onclick="window.location.href='menu.html'">❮</span>
                 <span class="icon-btn like-btn">❤️</span>
             </div>
-            <img src="Food-detail-images/Chicken-biriyani.png" alt="Chicken Biryani" class="main-food-img">
+            <!-- Empty image tag, source injected by JS -->
+            <img id="detail-img" src="" alt="Food Image" class="main-food-img">
         </div>
 
         <!-- FOOD DETAILS CONTENT -->
         <div class="details-content">
-            <h2 class="dish-title">Chicken Biryani</h2>
-            <p class="dish-price text-orange">₹180</p>
-            <p class="dish-desc">Aromatic basmati rice cooked with chicken, herbs and spices.</p>
+            <!-- Empty text tags, text injected by JS -->
+            <h2 id="detail-title" class="dish-title">Loading...</h2>
+            <p id="detail-price" class="dish-price text-orange"></p>
+            <p id="detail-desc" class="dish-desc"></p>
 
             <!-- QUANTITY SELECTOR -->
             <div class="quantity-row">
@@ -47,7 +49,7 @@
             </div>
 
             <!-- ACTION BUTTONS -->
-            <button class="btn-primary" onclick="addDetailsToCart('Chicken Biryani', 180)">ADD TO CART</button>
+            <button class="btn-primary" onclick="addDynamicDetailsToCart()">ADD TO CART</button>
             <button class="btn-outline-orange">📞 Call Waiter</button>
         </div>
 
