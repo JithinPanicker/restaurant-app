@@ -3,33 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Spice Delight - Food Details</title>
+    <title>Spice Delight - Details</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#ffffff">
 </head>
 <body class="details-body">
     <div id="app-container" class="details-container">
         
-        <!-- HEADER IMAGE WITH BACK AND LIKE BUTTON -->
         <div class="details-header">
             <div class="top-actions">
                 <span class="icon-btn back-btn" onclick="window.location.href='menu.html'">❮</span>
                 <span class="icon-btn like-btn">❤️</span>
             </div>
-            <!-- Empty image tag, source injected by JS -->
-            <img id="detail-img" src="" alt="Food Image" class="main-food-img">
+            <img id="detail-img" src="" alt="Food" class="main-food-img">
         </div>
 
-        <!-- FOOD DETAILS CONTENT -->
         <div class="details-content">
-            <!-- Empty text tags, text injected by JS -->
             <h2 id="detail-title" class="dish-title">Loading...</h2>
             <p id="detail-price" class="dish-price text-orange"></p>
             <p id="detail-desc" class="dish-desc"></p>
 
-            <!-- QUANTITY SELECTOR -->
             <div class="quantity-row">
                 <span class="qty-label">Quantity</span>
                 <div class="qty-controls">
@@ -39,17 +32,15 @@
                 </div>
             </div>
 
-            <!-- SPECIAL INSTRUCTIONS -->
             <div class="instructions-section">
                 <label>Special Instructions (Optional)</label>
                 <div class="textarea-wrapper">
-                    <textarea id="special-inst" maxlength="100" placeholder="E.g. Less spicy, No onion, No garlic, Less sugar in tea, etc." oninput="updateCharCount(this)"></textarea>
+                    <textarea id="special-inst" maxlength="100" placeholder="E.g. Less spicy, No onion..." oninput="updateCharCount(this)"></textarea>
                     <span id="char-count" class="char-count">0/100</span>
                 </div>
             </div>
 
-            <!-- ACTION BUTTONS -->
-            <button class="btn-primary" onclick="addDynamicDetailsToCart()">ADD TO CART</button>
+            <button class="btn-primary" onclick="addCurrentItemToCart()">ADD TO CART</button>
             <button class="btn-outline-orange">📞 Call Waiter</button>
         </div>
 

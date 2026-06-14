@@ -316,3 +316,156 @@ header { display: flex; justify-content: space-between; align-items: center; mar
     justify-content: center !important;
     align-items: center !important;
 }
+/* --- CART PAGE STYLES --- */
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.back-btn {
+    font-size: 20px;
+    cursor: pointer;
+}
+.table-info {
+    font-size: 14px;
+    font-weight: 500;
+    color: #f25c05;
+}
+.btn-call-waiter-outline {
+    width: 100%;
+    background: transparent;
+    color: #f25c05;
+    border: 1px solid #f25c05;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+/* Cart Item List */
+#cart-items-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.cart-item {
+    display: flex;
+    gap: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+.cart-item-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+.cart-item-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.cart-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.cart-item-header h4 {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+}
+.delete-btn {
+    cursor: pointer;
+    color: #888;
+}
+.cart-item-details .price {
+    font-weight: 600;
+    margin: 4px 0 0 0;
+    color: #333;
+}
+.cart-item-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+.item-total {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Special Instructions */
+.special-instructions-box {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.special-instructions-box label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+}
+.special-instructions-box textarea {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    resize: none;
+    outline: none;
+    color: #666;
+}
+
+/* Billing Summary */
+.billing-summary {
+    margin-bottom: 30px;
+}
+.bill-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 8px;
+}
+.total-row {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    margin-top: 10px;
+}
+hr {
+    border: none;
+    border-top: 1px dashed #ccc;
+    margin: 10px 0;
+}
+
+/* Cart Footer */
+.cart-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 20px;
+}
+.btn-place-order {
+    background-color: #f25c05;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+}
+.bottom-waiter {
+    margin-bottom: 0;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Spice Delight - Cart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="menu-body">
+    <div id="app-container" class="menu-container" style="padding-bottom: 20px;">
+        
+        <header class="top-header cart-header">
+            <div class="back-btn" onclick="window.location.href='menu.html'" style="cursor: pointer;">❮</div>
+            <h2 class="header-title" style="margin:0; text-align:center; flex:1;">Your Cart</h2>
+            <div class="table-info" style="font-weight:600; color:#f25c05;">Table <span class="table-num">05</span></div>
+        </header>
+
+        <div class="action-row" style="margin-top: 20px;">
+            <button class="btn-call-waiter-outline">📞 Call Waiter</button>
+        </div>
+
+        <div id="cart-items-container"></div>
+
+        <div class="special-instructions-box">
+            <label>Special Instructions for Kitchen</label>
+            <textarea placeholder="No onion in any item. Less spicy." rows="2"></textarea>
+        </div>
+
+        <div class="billing-summary">
+            <div class="bill-row">
+                <span>Subtotal</span>
+                <span id="subtotal-amt">₹0</span>
+            </div>
+            <div class="bill-row">
+                <span>Taxes & Charges (5%)</span>
+                <span id="tax-amt">₹0</span>
+            </div>
+            <hr>
+            <div class="bill-row total-row">
+                <span>Total</span>
+                <span id="total-amt">₹0</span>
+            </div>
+        </div>
+
+        <div class="cart-footer" style="margin-top: 20px;">
+            <button class="btn-primary" style="width: 100%; margin-bottom: 10px;" onclick="alert('Order Placed Successfully!')">PLACE ORDER</button>
+            <button class="btn-call-waiter-outline">📞 Call Waiter</button>
+        </div>
+
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
