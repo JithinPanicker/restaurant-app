@@ -274,3 +274,14 @@ header { display: flex; justify-content: space-between; align-items: center; mar
     border-radius: 8px; font-size: 16px; font-weight: 600;
     cursor: pointer; margin-top: 15px; display: flex; justify-content: center; align-items: center; gap: 8px;
 }
+/* Ensure both buttons on the Details page are exactly the same size */
+.details-content .btn-primary,
+.details-content .btn-outline-orange {
+    width: 100%;
+    margin-bottom: 15px; /* Adds equal spacing between the buttons */
+}
+
+/* Remove the extra top margin from the outline button so they match perfectly */
+.btn-outline-orange {
+    margin-top: 0; 
+}
