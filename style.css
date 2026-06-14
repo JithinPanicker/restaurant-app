@@ -285,3 +285,34 @@ header { display: flex; justify-content: space-between; align-items: center; mar
 .btn-outline-orange {
     margin-top: 0; 
 }
+/* =========================================
+   FIX BUTTON SIZES & FIT ON ONE SCREEN
+========================================= */
+
+/* 1. Reduce top image height to save vertical space */
+.details-header {
+    height: 200px !important; 
+}
+
+/* 2. Reduce the empty gaps between text elements */
+.dish-price { margin-bottom: 5px !important; }
+.dish-desc { margin-bottom: 15px !important; }
+.quantity-row { margin-bottom: 15px !important; }
+.instructions-section { margin-bottom: 15px !important; }
+
+/* 3. Reduce the height of the typing box */
+.textarea-wrapper textarea {
+    height: 60px !important;
+}
+
+/* 4. Force both buttons to be exactly identical in width, height, and spacing */
+.details-content .btn-primary,
+.details-content .btn-outline-orange {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 12px !important; /* Slightly thinner to fit on screen */
+    margin: 0 0 12px 0 !important; /* Exact same spacing for both */
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
