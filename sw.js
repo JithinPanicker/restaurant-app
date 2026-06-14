@@ -1,9 +1,10 @@
-const CACHE_NAME = 'spice-delight-v4'; 
+const CACHE_NAME = 'spice-delight-v5'; // Changed to v4
 
 const assets = [
   './',
   './index.html',
   './menu.html',
+  './food-details.html', // New HTML
   './style.css',
   './app.js',
   './manifest.json',
@@ -16,7 +17,8 @@ const assets = [
   './menu-images/Chicken-biriyani.png',
   './menu-images/Paneer-Butter-Masala.png',
   './menu-images/Veg-Fried-Rice.png',
-  './menu-images/Chicken-Curry.png'
+  './menu-images/Chicken-Curry.png',
+  './Food-detail-images/Chicken-biriyani.png' // New Image Folder
 ];
 
 self.addEventListener('install', evt => {

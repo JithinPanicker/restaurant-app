@@ -35,3 +35,46 @@ if ('serviceWorker' in navigator) {
             .catch(err => console.log('Service Worker Error', err));
     });
 }
+// --- NEW LOGIC FOR FOOD DETAILS PAGE ---
+
+let currentDetailQty = 1;
+
+// Handle + and - buttons on details page
+function changeQty(change) {
+    const qtyElement = document.getElementById('detail-qty');
+    if (!qtyElement) return;
+
+    currentDetailQty += change;
+    if (currentDetailQty < 1) currentDetailQty = 1; // Prevent going below 1
+    qtyElement.innerText = currentDetailQty;
+}
+
+// Handle character count on text area
+function updateCharCount(textarea) {
+    const countElement = document.getElementById('char-count');
+    if (countElement) {
+        countElement.innerText = `${textarea.value.length}/100`;
+    }
+}
+
+// Add specifically from the details page
+function addDetailsToCart(name, price) {
+    // Get special instructions if any
+    const instructions = document.getElementById('special-inst') ? document.getElementById('special-inst').value : '';
+    
+    // Check if item is already in cart
+    let existingItem = cart.find(item => item.name === name && item.instructions === instructions);
+    
+    if (existingItem) {
+        existingItem.quantity += currentDetailQty;
+    } else {
+        cart.push({ name, price, quantity: currentDetailQty, instructions });
+    }
+    
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    
+    // Alert and send user back to menu
+    alert(`${currentDetailQty}x ${name} added to cart!`);
+    window.location.href = 'menu.html';
+}

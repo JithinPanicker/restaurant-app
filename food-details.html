@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Spice Delight - Food Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body class="details-body">
+    <div id="app-container" class="details-container">
+        
+        <!-- HEADER IMAGE WITH BACK AND LIKE BUTTON -->
+        <div class="details-header">
+            <div class="top-actions">
+                <span class="icon-btn back-btn" onclick="window.location.href='menu.html'">❮</span>
+                <span class="icon-btn like-btn">❤️</span>
+            </div>
+            <img src="Food-detail-images/Chicken-biriyani.png" alt="Chicken Biryani" class="main-food-img">
+        </div>
+
+        <!-- FOOD DETAILS CONTENT -->
+        <div class="details-content">
+            <h2 class="dish-title">Chicken Biryani</h2>
+            <p class="dish-price text-orange">₹180</p>
+            <p class="dish-desc">Aromatic basmati rice cooked with chicken, herbs and spices.</p>
+
+            <!-- QUANTITY SELECTOR -->
+            <div class="quantity-row">
+                <span class="qty-label">Quantity</span>
+                <div class="qty-controls">
+                    <button onclick="changeQty(-1)">−</button>
+                    <span id="detail-qty">1</span>
+                    <button onclick="changeQty(1)">+</button>
+                </div>
+            </div>
+
+            <!-- SPECIAL INSTRUCTIONS -->
+            <div class="instructions-section">
+                <label>Special Instructions (Optional)</label>
+                <div class="textarea-wrapper">
+                    <textarea id="special-inst" maxlength="100" placeholder="E.g. Less spicy, No onion, No garlic, Less sugar in tea, etc." oninput="updateCharCount(this)"></textarea>
+                    <span id="char-count" class="char-count">0/100</span>
+                </div>
+            </div>
+
+            <!-- ACTION BUTTONS -->
+            <button class="btn-primary" onclick="addDetailsToCart('Chicken Biryani', 180)">ADD TO CART</button>
+            <button class="btn-outline-orange">📞 Call Waiter</button>
+        </div>
+
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
