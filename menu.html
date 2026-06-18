@@ -15,12 +15,12 @@
         
         <!-- Header -->
         <header class="top-header">
-            <a href="fiter.html" class="header-left" style="text-decoration: none; display: flex; align-items: center; gap: 6px; color: #1a1a1a;">
+            <div class="header-left" onclick="window.location.href='fiter.html'" style="cursor: pointer; display: flex; align-items: center; gap: 6px; color: #1a1a1a;">
                 <svg class="filter-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 13 10 21 14 18 14 13 22 3"></polygon></svg>
                 <span class="filter-text">Filter</span>
-            </a>
+            </div>
             <h2 class="header-title">Menu</h2>
-            <div class="header-right" onclick="window.location.href='cart.html'">
+            <div class="header-right" onclick="window.location.href='cart.html'" style="cursor: pointer;">
                 <svg class="cart-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
                 <span class="cart-badge" id="cart-count">2</span>
             </div>
@@ -66,7 +66,6 @@
         </div>
         <div class="menu-list">
             
-            <!-- Item 1: Chicken Biryani -->
             <div class="menu-list-item">
                 <img src="menu-images/Chicken-biriyani.png" alt="Chicken Biryani" class="dish-img">
                 <div class="dish-info">
@@ -90,7 +89,6 @@
                 <button class="btn-add-solid" onclick="window.location.href='food-details.html?id=chicken-biryani'">ADD</button>
             </div>
 
-            <!-- Item 2: Paneer Butter Masala (Unavailable) -->
             <div class="menu-list-item">
                 <img src="menu-images/Paneer-Butter-Masala.png" alt="Paneer Butter Masala" class="dish-img">
                 <div class="dish-info">
@@ -111,7 +109,6 @@
                 <button class="btn-add-disabled">ADD</button>
             </div>
 
-            <!-- Item 3: Chicken Curry (Unavailable) -->
             <div class="menu-list-item">
                 <img src="menu-images/Chicken-Curry.png" alt="Chicken Curry" class="dish-img">
                 <div class="dish-info">
@@ -135,7 +132,6 @@
                 <button class="btn-add-disabled">ADD</button>
             </div>
 
-            <!-- Item 4: Veg Fried Rice (Discount) -->
             <div class="menu-list-item">
                 <img src="menu-images/Veg-Fried-Rice.png" alt="Veg Fried Rice" class="dish-img">
                 <div class="dish-info">
@@ -159,7 +155,6 @@
 
         </div>
 
-        <!-- Floating Call Waiter Button -->
         <div class="call-waiter-float" onclick="alert('Calling the waiter!');">
             <svg class="bell-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
             Call Waiter

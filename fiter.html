@@ -6,123 +6,45 @@
     <title>Filter - Spice Delight</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <meta name="theme-color" content="#ffffff">
-    
     <style>
-        /* Reset & Base Styles */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body, html {
-            width: 100%; height: 100%; background: #ffffff;
-            font-family: 'Poppins', sans-serif;
-            display: flex; justify-content: center; align-items: flex-start;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .filter-container {
-            width: 100%; max-width: 450px;
-            background: #ffffff; padding: 20px 25px;
-            min-height: 100vh; padding-bottom: 100px;
-            position: relative;
-        }
-
-        /* Header */
-        .filter-header {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 25px; padding-top: 5px;
-        }
+        body, html { width: 100%; height: 100%; background: #ffffff; font-family: 'Poppins', sans-serif; display: flex; justify-content: center; align-items: flex-start; }
+        .filter-container { width: 100%; max-width: 450px; background: #ffffff; padding: 20px 25px; min-height: 100vh; padding-bottom: 100px; position: relative; }
+        
+        .filter-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding-top: 5px; }
         .close-btn { cursor: pointer; padding: 5px; display: flex; }
         .filter-title { font-size: 22px; font-weight: 700; color: #000; }
         .header-placeholder { width: 24px; }
 
-        /* Sections */
         .filter-section { margin-bottom: 25px; }
-        .filter-label {
-            font-size: 16px; font-weight: 700; color: #000;
-            margin-bottom: 15px; display: block;
-        }
+        .filter-label { font-size: 16px; font-weight: 700; color: #000; margin-bottom: 15px; display: block; }
         .filter-divider { border: none; border-top: 1px solid #f0f0f0; margin: 20px 0; }
 
-        /* Custom Checkbox */
-        .custom-checkbox {
-            display: flex; align-items: center; gap: 15px;
-            margin-bottom: 12px; cursor: pointer;
-            font-size: 15px; color: #111;
-        }
+        .custom-checkbox { display: flex; align-items: center; gap: 15px; margin-bottom: 12px; cursor: pointer; font-size: 15px; color: #111; }
         .custom-checkbox input { display: none; }
-        .custom-checkbox .checkmark {
-            width: 22px; height: 22px;
-            border: 2px solid #FF2E2E; border-radius: 4px;
-            background: #fff; position: relative; flex-shrink: 0;
-            transition: all 0.2s;
-        }
+        .custom-checkbox .checkmark { width: 22px; height: 22px; border: 2px solid #FF2E2E; border-radius: 4px; background: #fff; position: relative; flex-shrink: 0; transition: all 0.2s; }
         .custom-checkbox input:checked + .checkmark { background: #FF2E2E; }
-        .custom-checkbox input:checked + .checkmark::after {
-            content: ''; position: absolute;
-            left: 6px; top: 2px; width: 6px; height: 10px;
-            border: solid #fff; border-width: 0 2px 2px 0;
-            transform: rotate(45deg);
-        }
+        .custom-checkbox input:checked + .checkmark::after { content: ''; position: absolute; left: 6px; top: 2px; width: 6px; height: 10px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
 
-        /* Price Slider */
-        .price-display {
-            font-size: 16px; font-weight: 600; color: #FF2E2E;
-            margin-bottom: 15px;
-        }
-        .slider-wrapper {
-            position: relative; height: 30px; margin: 10px 0 15px 0;
-        }
-        .slider-track {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            width: 100%; height: 4px; background: #e0e0e0; border-radius: 4px;
-        }
-        .slider-fill {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            height: 4px; background: #FF2E2E; border-radius: 4px;
-        }
-        .slider-thumb {
-            -webkit-appearance: none; appearance: none;
-            width: 100%; height: 100%; background: transparent;
-            position: absolute; top: 0; pointer-events: none;
-        }
-        .slider-thumb::-webkit-slider-thumb {
-            -webkit-appearance: none; appearance: none;
-            width: 24px; height: 24px; background: #fff;
-            border: 4px solid #FF2E2E; border-radius: 50%;
-            cursor: pointer; pointer-events: auto;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .slider-thumb::-moz-range-thumb {
-            width: 24px; height: 24px; background: #fff;
-            border: 4px solid #FF2E2E; border-radius: 50%;
-            cursor: pointer; pointer-events: auto;
-        }
+        .price-display { font-size: 16px; font-weight: 600; color: #FF2E2E; margin-bottom: 15px; }
+        .slider-wrapper { position: relative; height: 30px; margin: 10px 0 15px 0; }
+        .slider-track { position: absolute; top: 50%; transform: translateY(-50%); width: 100%; height: 4px; background: #e0e0e0; border-radius: 4px; }
+        .slider-fill { position: absolute; top: 50%; transform: translateY(-50%); height: 4px; background: #FF2E2E; border-radius: 4px; }
+        .slider-thumb { -webkit-appearance: none; appearance: none; width: 100%; height: 100%; background: transparent; position: absolute; top: 0; pointer-events: none; }
+        .slider-thumb::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 24px; height: 24px; background: #fff; border: 4px solid #FF2E2E; border-radius: 50%; cursor: pointer; pointer-events: auto; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .slider-thumb::-moz-range-thumb { width: 24px; height: 24px; background: #fff; border: 4px solid #FF2E2E; border-radius: 50%; cursor: pointer; pointer-events: auto; }
         #min-range { z-index: 2; }
         #max-range { z-index: 1; }
 
-        /* Footer Buttons */
-        .filter-footer {
-            position: fixed; bottom: 0; left: 0; right: 0;
-            max-width: 450px; margin: 0 auto;
-            background: #fff; padding: 15px 25px 25px 25px;
-            display: flex; gap: 12px; border-top: 1px solid #f0f0f0;
-        }
-        .btn-reset, .btn-apply {
-            flex: 1; display: flex; justify-content: center; align-items: center;
-            gap: 8px; padding: 14px; border-radius: 8px;
-            font-size: 15px; font-weight: 600; cursor: pointer; border: none;
-        }
-        .btn-reset {
-            border: 1px solid #FF2E2E; background: #fff; color: #FF2E2E;
-        }
+        .filter-footer { position: fixed; bottom: 0; left: 0; right: 0; max-width: 450px; margin: 0 auto; background: #fff; padding: 15px 25px 25px 25px; display: flex; gap: 12px; border-top: 1px solid #f0f0f0; }
+        .btn-reset, .btn-apply { flex: 1; display: flex; justify-content: center; align-items: center; gap: 8px; padding: 14px; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; border: none; }
+        .btn-reset { border: 1px solid #FF2E2E; background: #fff; color: #FF2E2E; }
         .btn-apply { background: #FF2E2E; color: #fff; box-shadow: 0 4px 10px rgba(255, 46, 46, 0.2); }
-        .btn-reset:active { transform: scale(0.97); }
-        .btn-apply:active { transform: scale(0.97); }
+        .btn-reset:active, .btn-apply:active { transform: scale(0.97); }
     </style>
 </head>
 <body>
-
     <div class="filter-container">
-        
-        <!-- Header -->
         <div class="filter-header">
             <div class="close-btn" onclick="window.location.href='menu.html'">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -131,21 +53,16 @@
             <div class="header-placeholder"></div>
         </div>
 
-        <!-- Food Type -->
         <div class="filter-section">
             <span class="filter-label">Food Type</span>
             <label class="custom-checkbox"><input type="checkbox"><span class="checkmark"></span>Veg</label>
             <label class="custom-checkbox"><input type="checkbox"><span class="checkmark"></span>Non-Veg</label>
         </div>
-
         <hr class="filter-divider">
 
-        <!-- Price -->
         <div class="filter-section">
             <span class="filter-label">Price</span>
-            <div class="price-display">
-                <span id="min-price-text">₹125</span> – <span id="max-price-text">₹3000+</span>
-            </div>
+            <div class="price-display"><span id="min-price-text">₹125</span> – <span id="max-price-text">₹3000+</span></div>
             <div class="slider-wrapper">
                 <div class="slider-track"></div>
                 <div class="slider-fill" id="slider-fill"></div>
@@ -153,10 +70,8 @@
                 <input type="range" min="0" max="3000" value="3000" id="max-range" class="slider-thumb max-thumb">
             </div>
         </div>
-
         <hr class="filter-divider">
 
-        <!-- Discount -->
         <div class="filter-section">
             <span class="filter-label">Discount</span>
             <label class="custom-checkbox"><input type="checkbox"><span class="checkmark"></span>10% and above</label>
@@ -164,17 +79,14 @@
             <label class="custom-checkbox"><input type="checkbox"><span class="checkmark"></span>30% and above</label>
             <label class="custom-checkbox"><input type="checkbox"><span class="checkmark"></span>40% and above</label>
         </div>
-
         <hr class="filter-divider">
 
-        <!-- Special -->
         <div class="filter-section">
             <span class="filter-label">Special</span>
             <label class="custom-checkbox"><input type="checkbox"><span class="checkmark"></span>Most Ordered</label>
             <label class="custom-checkbox"><input type="checkbox"><span class="checkmark"></span>Chef's Special</label>
         </div>
 
-        <!-- Footer -->
         <div class="filter-footer">
             <button class="btn-reset" onclick="resetFilters()">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"></path><path d="M1 20v-6h6"></path><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
@@ -197,44 +109,25 @@
         function updateSlider() {
             let minVal = parseInt(minRange.value);
             let maxVal = parseInt(maxRange.value);
-
-            // Prevent them from crossing each other
             if (maxVal - minVal <= 10) {
-                if (minVal < maxVal) {
-                    minRange.value = Math.max(0, maxVal - 10);
-                    minVal = parseInt(minRange.value);
-                }
+                if (minVal < maxVal) { minRange.value = Math.max(0, maxVal - 10); minVal = parseInt(minRange.value); }
             }
-
             const minPercent = (minVal / 3000) * 100;
             const maxPercent = (maxVal / 3000) * 100;
-
             sliderFill.style.left = minPercent + '%';
             sliderFill.style.right = (100 - maxPercent) + '%';
-
             minPriceText.textContent = '₹' + minVal;
             maxPriceText.textContent = '₹' + maxVal + '+';
         }
-
         minRange.addEventListener('input', updateSlider);
         maxRange.addEventListener('input', updateSlider);
-        updateSlider(); // Run on load
+        updateSlider();
 
         function resetFilters() {
-            // Reset checkboxes
-            document.querySelectorAll('.custom-checkbox input').forEach(checkbox => {
-                checkbox.checked = false;
-            });
-            // Reset slider to default
-            minRange.value = 125;
-            maxRange.value = 3000;
-            updateSlider();
+            document.querySelectorAll('.custom-checkbox input').forEach(checkbox => { checkbox.checked = false; });
+            minRange.value = 125; maxRange.value = 3000; updateSlider();
         }
-
-        function applyFilters() {
-            alert('Filters Applied successfully!');
-            window.location.href = 'menu.html';
-        }
+        function applyFilters() { alert('Filters Applied successfully!'); window.location.href = 'menu.html'; }
     </script>
 </body>
 </html>
