@@ -1,5 +1,6 @@
 :root {
-    --primary-color: #F05A28; /* Adjusted to match the specific orange in your design */
+    --primary-color: #F05A28;
+    --primary-red: #ff2f2f;
     --bg-color: #ffffff;
     --text-dark: #222222;
     --text-light: #666666;
@@ -9,7 +10,7 @@
     margin: 0; 
     padding: 0; 
     box-sizing: border-box; 
-    font-family: 'Poppins', sans-serif; /* Applied exact matching font */
+    font-family: 'Poppins', sans-serif; 
 }
 
 body {
@@ -47,9 +48,9 @@ h1, h2, h3, h4 { color: var(--text-dark); }
     border: none;
     border-radius: 8px;
     font-size: 16px;
-    font-weight: 600; /* Made slightly thicker to match design */
+    font-weight: 600; 
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(240, 90, 40, 0.2); /* Soft orange shadow */
+    box-shadow: 0 4px 10px rgba(240, 90, 40, 0.2);
 }
 
 /* =========================================
@@ -57,7 +58,7 @@ h1, h2, h3, h4 { color: var(--text-dark); }
 ========================================= */
 #welcome-screen {
     padding: 0; 
-    justify-content: space-between; /* Pushes content top, image bottom */
+    justify-content: space-between;
     background: linear-gradient(to bottom, #ffffff 70%, #fffaf7 100%);
 }
 
@@ -76,7 +77,7 @@ h1, h2, h3, h4 { color: var(--text-dark); }
 }
 
 .main-logo {
-    width: 90px; /* Adjust based on your logo file's proportion */
+    width: 90px; 
     margin-bottom: 5px;
 }
 
@@ -112,7 +113,7 @@ h1, h2, h3, h4 { color: var(--text-dark); }
     border-radius: 12px;
     padding: 20px 40px;
     text-align: center;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.06); /* Soft, exact drop shadow */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
     margin-bottom: 25px;
     width: 80%;
 }
@@ -133,343 +134,15 @@ h1, h2, h3, h4 { color: var(--text-dark); }
 .welcome-bottom-image {
     width: 100%;
     height: auto;
-    max-height: 25vh; /* Prevents it from taking up too much space on small screens */
+    max-height: 25vh;
     object-fit: cover;
     object-position: top;
-    margin-top: auto; /* Locks it to the absolute bottom */
+    margin-top: auto;
 }
-
 
 /* =========================================
-   MENU & CART SCREEN (Existing Styles)
+   RESET AND HOME PAGE CONTAINER 
 ========================================= */
-#menu-screen, #cart-screen { padding: 20px; }
-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-.categories { display: flex; gap: 10px; overflow-x: auto; margin-bottom: 20px; padding-bottom: 5px; }
-.cat { padding: 10px 15px; background: #eee; border-radius: 20px; white-space: nowrap; font-size: 14px; }
-.cat.active { background: var(--primary-color); color: white; }
-.menu-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #eee; }
-.price { font-weight: bold; color: var(--text-dark); margin-top: 5px; }
-.btn-add { padding: 8px 15px; background: #ffe5d0; color: var(--primary-color); border: 1px solid var(--primary-color); border-radius: 5px; cursor: pointer; font-weight: bold; }
-.btn-back { background: none; border: none; font-size: 16px; color: var(--text-dark); cursor: pointer; font-weight: 600;}
-
-.cart-item { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px dashed #ccc; }
-.bill-details { margin-top: 30px; background: #f9f9f9; padding: 15px; border-radius: 8px; }
-.row { display: flex; justify-content: space-between; margin-bottom: 10px; color: var(--text-light); }
-.row.total { font-weight: bold; color: var(--text-dark); font-size: 18px; border-top: 1px solid #ddd; padding-top: 10px; }
-/* =========================================
-   NEW MENU PAGE STYLES
-========================================= */
-.menu-body { background-color: #f9f9f9; }
-.menu-container { padding: 20px; background: #ffffff; display: block; overflow-y: auto; }
-
-.top-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-.hamburger { font-size: 24px; cursor: pointer; color: var(--text-dark); }
-.header-title { font-size: 18px; font-weight: 600; }
-.cart-icon { position: relative; font-size: 20px; cursor: pointer; }
-.cart-badge {
-    position: absolute; top: -8px; right: -10px;
-    background: var(--primary-color); color: white;
-    font-size: 10px; font-weight: bold;
-    padding: 2px 6px; border-radius: 50%;
-}
-
-.search-bar {
-    display: flex; align-items: center;
-    background: #f5f5f5; border-radius: 10px;
-    padding: 12px 15px; margin-bottom: 20px;
-}
-.search-icon { color: #888; margin-right: 10px; font-size: 16px; }
-.search-bar input {
-    border: none; background: transparent; width: 100%;
-    font-size: 14px; outline: none; color: var(--text-dark);
-}
-
-.action-row { display: flex; justify-content: flex-end; margin-bottom: 25px; }
-.btn-call-waiter {
-    background: #fff; color: var(--primary-color);
-    border: 1px solid var(--primary-color); border-radius: 8px;
-    padding: 8px 15px; font-size: 13px; font-weight: 600;
-    cursor: pointer; display: flex; align-items: center; gap: 5px;
-}
-
-.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-.section-header h3 { font-size: 16px; font-weight: 700; }
-.view-all { font-size: 12px; font-weight: 600; color: var(--text-dark); cursor: pointer; }
-
-.category-grid {
-    display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 25px;
-}
-.category-grid::-webkit-scrollbar { display: none; }
-.category-item { text-align: center; min-width: 70px; cursor: pointer; }
-.cat-img-box {
-    background: #fff; border-radius: 12px; padding: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 8px;
-    display: flex; justify-content: center; align-items: center;
-}
-.cat-img-box img { width: 40px; height: 40px; object-fit: contain; }
-.category-item p { font-size: 11px; font-weight: 600; color: var(--text-dark); }
-
-.menu-list-item {
-    display: flex; align-items: center; margin-bottom: 20px;
-}
-.dish-img { width: 70px; height: 70px; border-radius: 12px; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
-.dish-info { flex-grow: 1; margin-left: 15px; }
-.dish-info h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-.dish-info .price { font-size: 14px; font-weight: 700; color: var(--text-dark); }
-.btn-add-solid {
-    background: var(--primary-color); color: white; border: none;
-    padding: 6px 18px; border-radius: 6px; font-size: 12px;
-    font-weight: 700; cursor: pointer; box-shadow: 0 2px 8px rgba(240, 90, 40, 0.3);
-}
-/* =========================================
-   FOOD DETAILS PAGE STYLES
-========================================= */
-.details-body { background-color: #f9f9f9; }
-.details-container { background: #ffffff; display: block; overflow-y: auto; padding-bottom: 20px;}
-
-.details-header { position: relative; width: 100%; height: 250px; }
-.top-actions {
-    position: absolute; top: 20px; left: 20px; right: 20px;
-    display: flex; justify-content: space-between; z-index: 10;
-}
-.icon-btn {
-    background: #fff; width: 35px; height: 35px;
-    border-radius: 50%; display: flex; justify-content: center; align-items: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1); cursor: pointer; font-size: 16px;
-}
-.like-btn { color: #ff4757; }
-.main-food-img { width: 100%; height: 100%; object-fit: cover; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; }
-
-.details-content { padding: 20px; }
-.dish-title { font-size: 22px; font-weight: 700; margin-bottom: 5px; }
-.dish-price { font-size: 18px; font-weight: 600; margin-bottom: 15px; }
-.dish-desc { font-size: 14px; color: var(--text-light); line-height: 1.5; margin-bottom: 25px; }
-
-.quantity-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-.qty-label { font-size: 14px; font-weight: 700; color: var(--text-dark); }
-.qty-controls {
-    display: flex; align-items: center; background: #fff;
-    border: 1px solid #ddd; border-radius: 8px; overflow: hidden;
-}
-.qty-controls button {
-    background: transparent; border: none; padding: 5px 15px;
-    font-size: 18px; font-weight: 600; cursor: pointer; color: var(--text-dark);
-}
-.qty-controls span { font-size: 14px; font-weight: 600; padding: 0 10px; }
-
-.instructions-section { margin-bottom: 25px; }
-.instructions-section label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 10px; color: var(--text-dark); }
-.textarea-wrapper { position: relative; }
-.textarea-wrapper textarea {
-    width: 100%; height: 80px; padding: 12px; border: 1px solid #eee;
-    border-radius: 8px; font-size: 13px; resize: none; background: #fafafa;
-    color: var(--text-dark); font-family: 'Poppins', sans-serif; outline: none;
-}
-.char-count { position: absolute; bottom: 10px; right: 12px; font-size: 11px; color: #aaa; font-weight: 500; }
-
-.btn-outline-orange {
-    width: 100%; padding: 15px; background: transparent;
-    color: var(--primary-color); border: 1px solid var(--primary-color);
-    border-radius: 8px; font-size: 16px; font-weight: 600;
-    cursor: pointer; margin-top: 15px; display: flex; justify-content: center; align-items: center; gap: 8px;
-}
-/* Ensure both buttons on the Details page are exactly the same size */
-.details-content .btn-primary,
-.details-content .btn-outline-orange {
-    width: 100%;
-    margin-bottom: 15px; /* Adds equal spacing between the buttons */
-}
-
-/* Remove the extra top margin from the outline button so they match perfectly */
-.btn-outline-orange {
-    margin-top: 0; 
-}
-/* =========================================
-   FIX BUTTON SIZES & FIT ON ONE SCREEN
-========================================= */
-
-/* 1. Reduce top image height to save vertical space */
-.details-header {
-    height: 200px !important; 
-}
-
-/* 2. Reduce the empty gaps between text elements */
-.dish-price { margin-bottom: 5px !important; }
-.dish-desc { margin-bottom: 15px !important; }
-.quantity-row { margin-bottom: 15px !important; }
-.instructions-section { margin-bottom: 15px !important; }
-
-/* 3. Reduce the height of the typing box */
-.textarea-wrapper textarea {
-    height: 60px !important;
-}
-
-/* 4. Force both buttons to be exactly identical in width, height, and spacing */
-.details-content .btn-primary,
-.details-content .btn-outline-orange {
-    width: 100% !important;
-    box-sizing: border-box !important;
-    padding: 12px !important; /* Slightly thinner to fit on screen */
-    margin: 0 0 12px 0 !important; /* Exact same spacing for both */
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-}
-/* --- CART PAGE STYLES --- */
-.cart-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.back-btn {
-    font-size: 20px;
-    cursor: pointer;
-}
-.table-info {
-    font-size: 14px;
-    font-weight: 500;
-    color: #f25c05;
-}
-.btn-call-waiter-outline {
-    width: 100%;
-    background: transparent;
-    color: #f25c05;
-    border: 1px solid #f25c05;
-    padding: 10px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-family: 'Poppins', sans-serif;
-    margin-bottom: 15px;
-    cursor: pointer;
-}
-
-/* Cart Item List */
-#cart-items-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-.cart-item {
-    display: flex;
-    gap: 15px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #eee;
-}
-.cart-item-img {
-    width: 70px;
-    height: 70px;
-    border-radius: 10px;
-    object-fit: cover;
-}
-.cart-item-details {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.cart-item-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-.cart-item-header h4 {
-    margin: 0;
-    font-size: 14px;
-    color: #333;
-}
-.delete-btn {
-    cursor: pointer;
-    color: #888;
-}
-.cart-item-details .price {
-    font-weight: 600;
-    margin: 4px 0 0 0;
-    color: #333;
-}
-.cart-item-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-}
-.item-total {
-    font-weight: 600;
-    color: #333;
-}
-
-/* Special Instructions */
-.special-instructions-box {
-    background: #f9f9f9;
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-.special-instructions-box label {
-    font-size: 13px;
-    font-weight: 600;
-    color: #333;
-    display: block;
-    margin-bottom: 8px;
-}
-.special-instructions-box textarea {
-    width: 100%;
-    border: none;
-    background: transparent;
-    font-family: 'Poppins', sans-serif;
-    font-size: 13px;
-    resize: none;
-    outline: none;
-    color: #666;
-}
-
-/* Billing Summary */
-.billing-summary {
-    margin-bottom: 30px;
-}
-.bill-row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 8px;
-}
-.total-row {
-    font-size: 16px;
-    font-weight: 700;
-    color: #333;
-    margin-top: 10px;
-}
-hr {
-    border: none;
-    border-top: 1px dashed #ccc;
-    margin: 10px 0;
-}
-
-/* Cart Footer */
-.cart-footer {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding-bottom: 20px;
-}
-.btn-place-order {
-    background-color: #f25c05;
-    color: white;
-    border: none;
-    padding: 15px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    cursor: pointer;
-    width: 100%;
-}
-.bottom-waiter {
-    margin-bottom: 0;
-}
-/* Reset and Base Styling */
 * {
     margin: 0;
     padding: 0;
@@ -481,20 +154,19 @@ body, html {
     height: 100%;
     font-family: 'Poppins', sans-serif;
     -webkit-tap-highlight-color: transparent;
-    background-color: #FCF8F4; /* Matches the cream edge of background.png */
+    background-color: #FCF8F4;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* App Container */
 .app-container {
     position: relative;
     width: 100%;
     max-width: 450px;
     height: 100vh;
     height: 100dvh;
-    background-color: #FCF8F4; /* Must match the transparent part of your background image */
+    background-color: #FCF8F4;
     background-image: url('home-page-images/background.png');
     background-size: cover;
     background-position: center;
@@ -502,10 +174,9 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 25px 20px 15px 20px; /* Top/Bottom padding adjusted so food doesn't clip the UI */
+    padding: 25px 20px 15px 20px;
 }
 
-/* Main Content Area */
 .main-content {
     display: flex;
     flex-direction: column;
@@ -513,10 +184,9 @@ body, html {
     width: 100%;
     max-width: 340px;
     flex-grow: 1; 
-    padding-top: 10%; /* Pushes text down to avoid top-food clipping */
+    padding-top: 10%;
 }
 
-/* Top Elements */
 .welcome-text {
     font-size: 17px;
     font-weight: 300;
@@ -525,7 +195,6 @@ body, html {
     letter-spacing: 0.5px;
 }
 
-/* Logo Wrapper - Fix for the square beige background */
 .logo-wrapper {
     width: 110px;
     height: 110px;
@@ -534,7 +203,7 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: transparent; /* Ensures the circle doesn't have its own color */
+    background-color: transparent;
     margin-bottom: 20px;
 }
 
@@ -542,10 +211,9 @@ body, html {
     width: 65%;
     height: auto;
     object-fit: contain;
-    mix-blend-mode: multiply; /* **CRITICAL**: If your logo image has a white/beige square behind it, this CSS will blend it away. */
+    mix-blend-mode: multiply;
 }
 
-/* Brand Title & Subtitle */
 .brand-title {
     font-family: 'Playfair Display', serif;
     font-size: 38px;
@@ -572,7 +240,6 @@ body, html {
     margin-bottom: 30px;
 }
 
-/* Table Pill - Added white background to stop it from collapsing with the food */
 .table-pill {
     display: inline-flex;
     align-items: center;
@@ -584,8 +251,8 @@ body, html {
     font-size: 15px;
     font-weight: 500;
     margin-bottom: 25px;
-    background: rgba(255, 255, 255, 0.85); /* Light opaque background to pop against the rice/bag */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.03); /* Very subtle elevation */
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
 }
 
 .table-pill svg {
@@ -597,7 +264,6 @@ body, html {
     stroke-linejoin: round;
 }
 
-/* Bottom CTA Button */
 .cta-button-container {
     width: 100%;
     display: flex;
@@ -612,7 +278,7 @@ body, html {
     font-size: 19px;
     font-weight: 500;
     padding: 20px 0;
-    width: 85%; /* Slightly smaller width to ensure it doesn't touch the side food images */
+    width: 85%;
     max-width: 360px;
     text-align: center;
     border-radius: 50px;
@@ -624,4 +290,391 @@ body, html {
 
 .cta-button:active {
     transform: scale(0.97);
+}
+
+/* =========================================
+   NEW MENU PAGE STYLES
+========================================= */
+.menu-body {
+    background-color: #f9f9f9;
+    align-items: flex-start; /* Alignment fix for menu body */
+    padding-top: 0;
+}
+
+.menu-container {
+    width: 100%;
+    max-width: 450px;
+    background: #ffffff;
+    display: block;
+    padding: 20px 20px 100px 20px; /* Added huge bottom padding for floating waiter button */
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Top Header */
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 5px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.filter-icon {
+    width: 20px;
+    height: 20px;
+    stroke: #1a1a1a;
+}
+
+.filter-text {
+    font-size: 16px;
+    font-weight: 500;
+    color: #1a1a1a;
+}
+
+.header-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 0;
+}
+
+.header-right {
+    position: relative;
+    cursor: pointer;
+}
+
+.cart-icon {
+    width: 24px;
+    height: 24px;
+    stroke: #1a1a1a;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    background: #ff2f2f;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+/* Search Bar */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 12px 15px;
+    margin-bottom: 25px;
+}
+
+.search-icon {
+    width: 18px;
+    height: 18px;
+    stroke: #777;
+    margin-right: 12px;
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    width: 100%;
+    font-size: 14px;
+    outline: none;
+    color: var(--text-dark);
+}
+
+.search-bar input::placeholder {
+    color: #888;
+}
+
+/* Categories Section */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.section-header h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.btn-offers {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ff2f2f;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.category-grid {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    padding-left: 5px;
+}
+
+.category-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.category-item {
+    text-align: center;
+    min-width: 65px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.cat-img-box {
+    background: #f5f5f5;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+}
+
+.cat-img-box img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.category-item p {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-dark);
+    white-space: nowrap;
+}
+
+.category-item.active-cat p {
+    font-weight: 600;
+    position: relative;
+}
+
+.category-item.active-cat p::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -6px;
+    width: 40px;
+    height: 2px;
+    background: var(--primary-red);
+}
+
+/* Menu Items */
+.menu-list-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.dish-img {
+    width: 90px;
+    height: 90px;
+    border-radius: 12px;
+    object-fit: cover;
+    flex-shrink: 0;
+    margin-right: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.dish-info {
+    flex-grow: 1;
+    padding-right: 10px;
+}
+
+.dish-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.dish-title-row h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 0;
+}
+
+/* Veg / Non-Veg Icons */
+.veg-icon, .non-veg-icon {
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border: 1px solid #333;
+}
+.veg-icon { border-color: #2e7d32; }
+.veg-icon span { width: 6px; height: 6px; background: #2e7d32; border-radius: 50%; }
+.non-veg-icon { border-color: #c62828; }
+.non-veg-icon span { width: 6px; height: 6px; background: #c62828; border-radius: 50%; }
+
+/* Tags and Badges */
+.tags-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+}
+
+.tag-most-ordered, .tag-chef-special {
+    font-size: 9px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #c62828;
+}
+
+.tag-most-ordered { background: #ffe5e5; }
+.tag-chef-special { background: #ffe5d5; color: var(--primary-color); }
+
+.status-unavailable {
+    font-size: 10px;
+    font-weight: 600;
+    background: #f0f0f0;
+    color: #444;
+    padding: 2px 8px;
+    border-radius: 12px;
+    display: inline-block;
+    margin-bottom: 6px;
+}
+
+/* Orders */
+.order-info {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+}
+
+.order-info span {
+    font-size: 11px;
+    color: #666;
+}
+
+.small-icon {
+    width: 13px;
+    height: 13px;
+    stroke: #666;
+}
+
+/* Description & Price */
+.dish-desc {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.dish-price-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.price-current {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.price-old {
+    font-size: 13px;
+    font-weight: 500;
+    color: #999;
+    text-decoration: line-through;
+}
+
+.discount-badge {
+    font-size: 10px;
+    font-weight: 600;
+    color: #2e7d32;
+    background: #e8f5e9;
+    padding: 1px 5px;
+    border-radius: 4px;
+}
+
+/* ADD Buttons */
+.btn-add-solid, .btn-add-disabled {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-add-solid {
+    background: var(--primary-red);
+    color: white;
+    box-shadow: 0 2px 8px rgba(255, 47, 47, 0.2);
+}
+
+.btn-add-disabled {
+    background: #5a5a5a;
+    color: white;
+    cursor: not-allowed;
+}
+
+/* Floating Call Waiter Button */
+.call-waiter-float {
+    position: fixed;
+    bottom: 25px;
+    left: 20px;
+    background: var(--primary-red);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(255, 47, 47, 0.3);
+    cursor: pointer;
+    z-index: 1000;
+    border: none;
+}
+
+.bell-icon {
+    width: 18px;
+    height: 18px;
+    stroke: white;
 }
