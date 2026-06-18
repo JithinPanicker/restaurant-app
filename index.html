@@ -2,39 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Spice Delight - Welcome</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Spice Delight</title>
+    
+    <!-- Include fonts to match the original UI design -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Connect to external CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Link to Manifest for PWA support -->
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#F05A28">
 </head>
 <body>
-    <div id="app-container">
-        <!-- WELCOME SCREEN -->
-        <section id="welcome-screen" class="screen active">
-            <div class="welcome-content">
-                <div class="logo-container">
-                    <img src="restaurent-logo.png" alt="Spice Delight Logo" class="main-logo">
-                    <h2 class="brand-name">Spice Delight</h2>
-                    <p class="brand-subtext">— Family Restaurant —</p>
-                </div>
-                
-                <h1 class="welcome-title">Welcome!</h1>
-                <p class="welcome-instructions">Scan QR code to view menu<br>and place your order</p>
-                
-                <div class="table-card">
-                    <p class="table-label">Table Number</p>
-                    <h1 class="table-number text-orange">05</h1>
-                </div>
-                
-                <!-- Links to the new HTML file -->
-                <button class="btn-primary" onclick="window.location.href='menu.html'">VIEW MENU</button>
+
+    <div class="app-container">
+        
+        <div class="main-content">
+            <p class="welcome-text">Welcome to</p>
+            
+            <!-- Logo wrapper sets the orange ring -->
+            <div class="logo-wrapper">
+                <img src="home-page-images/logo.png" alt="Spice Delight Logo">
             </div>
             
-            <img src="welcome-food-image.png" alt="Delicious Food" class="welcome-bottom-image">
-        </section>
+            <h1 class="brand-title">Spice Delight</h1>
+            <h2 class="brand-subtitle">- Family Restaurant -</h2>
+            
+            <p class="description">
+                Delicious food, made fresh for you.<br>
+                Order your favorites for takeaway.
+            </p>
+            
+            <div class="table-pill">
+                <!-- Custom SVG Table Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                    <rect x="4" y="6" width="16" height="12" rx="1" />
+                    <line x1="4" y1="10" x2="20" y2="10" />
+                    <line x1="8" y1="6" x2="8" y2="18" />
+                    <line x1="16" y1="6" x2="16" y2="18" />
+                </svg>
+                <span>Table 05</span>
+            </div>
+        </div>
+
+        <!-- Bottom Button -->
+        <div class="cta-button-container">
+            <a href="menu.html" class="cta-button" id="viewMenuBtn">View Menu</a>
+        </div>
+
     </div>
+
+    <!-- Connect to external JavaScript -->
     <script src="app.js"></script>
 </body>
 </html>
