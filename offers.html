@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Spice Delight - Offers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ffffff">
+    <style>
+        /* Reset & Base Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html {
+            width: 100%; height: 100%;
+            font-family: 'Poppins', sans-serif;
+            background: #ffffff;
+            display: flex; justify-content: center; align-items: flex-start;
+        }
+        .offers-container {
+            width: 100%; max-width: 450px;
+            background: #ffffff;
+            padding: 25px 25px 40px 25px;
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+        }
+        
+        /* Header */
+        .offers-header {
+            display: flex; align-items: center; gap: 25px;
+            margin-bottom: 30px; padding-top: 5px;
+        }
+        .offers-header a { display: flex; text-decoration: none; cursor: pointer; }
+        .offers-header svg { stroke: #FF3300; stroke-width: 3; }
+        .offers-title-header {
+            font-size: 22px; font-weight: 700; color: #000;
+            letter-spacing: 0.5px;
+        }
+
+        /* Main Content */
+        .hero-image-container {
+            display: flex; justify-content: center; margin-bottom: 20px;
+        }
+        .hero-image-container img {
+            width: 160px; height: auto;
+            object-fit: contain;
+        }
+
+        .offers-title {
+            font-size: 22px; font-weight: 700; color: #111;
+            text-align: center; margin-bottom: 12px;
+        }
+        .offers-subtitle {
+            font-size: 15px; font-weight: 400; color: #555;
+            text-align: center; line-height: 1.5; margin-bottom: 30px;
+            padding: 0 10px;
+        }
+
+        /* Form Fields */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-label {
+            display: block; font-size: 15px; font-weight: 700; color: #111;
+            margin-bottom: 8px;
+        }
+        .form-label span.required { color: #FF3300; }
+        .form-input {
+            width: 100%; padding: 14px 16px;
+            border: 1px solid #E0E0E0; border-radius: 10px;
+            font-family: 'Poppins', sans-serif; font-size: 14px;
+            outline: none; transition: border-color 0.2s;
+            color: #222;
+        }
+        .form-input::placeholder { color: #999; }
+        .form-input:focus { border-color: #FF3300; }
+
+        /* Checkbox */
+        .checkbox-group {
+            display: flex; align-items: flex-start; gap: 14px;
+            margin: 25px 0 30px 0; cursor: pointer;
+        }
+        .checkbox-group input[type="checkbox"] { display: none; }
+        .custom-check {
+            width: 24px; height: 24px; min-width: 24px;
+            border: 1.5px solid #FF3300; border-radius: 4px;
+            background: #fff; position: relative; margin-top: 2px;
+        }
+        .checkbox-group input:checked + .custom-check { background: #FF3300; }
+        .checkbox-group input:checked + .custom-check::after {
+            content: ''; position: absolute;
+            left: 7px; top: 3px; width: 7px; height: 11px;
+            border: solid #fff; border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        .checkbox-text {
+            font-size: 14px; font-weight: 400; color: #333;
+            line-height: 1.5;
+        }
+
+        /* Submit Button */
+        .btn-claim-offer {
+            width: 100%; padding: 16px;
+            background: #FF3300; color: #fff;
+            border: none; border-radius: 10px;
+            font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 600;
+            cursor: pointer; 
+            box-shadow: 0 4px 15px rgba(255, 51, 0, 0.25);
+            margin-bottom: 30px;
+            transition: transform 0.1s ease;
+        }
+        .btn-claim-offer:active { transform: scale(0.97); }
+
+        /* Footer */
+        .privacy-footer {
+            display: flex; justify-content: center; align-items: center;
+            gap: 8px; color: #666; font-size: 13px; text-align: center;
+            line-height: 1.5; margin-top: auto;
+        }
+        .privacy-footer svg { flex-shrink: 0; stroke: #666; }
+    </style>
+</head>
+<body>
+
+    <div class="offers-container">
+        
+        <!-- Back Header -->
+        <div class="offers-header">
+            <a href="menu.html">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            </a>
+            <h2 class="offers-title-header">% OFFERS</h2>
+        </div>
+
+        <!-- Image (Ensure 'offers.png' is in the same folder) -->
+        <div class="hero-image-container">
+            <img src="offers.png" alt="Gift Box Offers" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\'><rect width=\'100\' height=\'100\' fill=\'%23f0f0f0\'/><text x=\'50\' y=\'55\' font-size=\'12\' text-anchor=\'middle\' fill=\'%23999\'>Image</text></svg>'">
+        </div>
+
+        <!-- Headings -->
+        <h3 class="offers-title">Get Exclusive Offers!</h3>
+        <p class="offers-subtitle">Enter your details to receive future discounts and special offers from us.</p>
+
+        <!-- Form -->
+        <form onsubmit="event.preventDefault(); alert('Offer claimed successfully!');">
+            <div class="form-group">
+                <label class="form-label">Name <span class="required">*</span></label>
+                <input type="text" class="form-input" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Phone Number <span class="required">*</span></label>
+                <input type="tel" class="form-input" placeholder="Enter your phone number" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Email (Optional)</label>
+                <input type="email" class="form-input" placeholder="Enter your email address">
+            </div>
+
+            <!-- Checkbox -->
+            <label class="checkbox-group">
+                <input type="checkbox">
+                <span class="custom-check"></span>
+                <span class="checkbox-text">I agree to receive promotional messages and offers from this restaurant.</span>
+            </label>
+
+            <!-- Button -->
+            <button type="submit" class="btn-claim-offer">Claim Offer</button>
+        </form>
+
+        <!-- Privacy Footer -->
+        <div class="privacy-footer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <span>We respect your privacy. Your details will not be shared with anyone.</span>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
