@@ -3,48 +3,272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Spice Delight - Details</title>
+    <title>Food Details</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-</head>
-<body class="details-body">
-    <div id="app-container" class="details-container">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ffffff">
+    
+    <style>
+        /* Food Details Specific Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { width: 100%; height: 100%; background: #ffffff; font-family: 'Poppins', sans-serif; display: flex; justify-content: center; align-items: flex-start; }
         
+        .details-container {
+            width: 100%; max-width: 450px;
+            background: #ffffff; padding: 20px 20px 100px 20px;
+            min-height: 100vh; position: relative;
+        }
+
+        /* Details Header */
+        .details-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 5px 5px 0 5px; }
+        .back-btn { cursor: pointer; display: flex; }
+        .header-cart { position: relative; cursor: pointer; }
+        .details-cart-badge {
+            position: absolute; top: -6px; right: -8px;
+            background: #FF3300; color: white;
+            font-size: 10px; font-weight: bold;
+            padding: 3px 7px; border-radius: 50%;
+        }
+
+        /* Main Image */
+        .detail-main-img { width: 100%; height: 260px; border-radius: 16px; object-fit: cover; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+
+        /* Food Info */
+        .detail-title { font-size: 24px; font-weight: 700; color: #111; margin-bottom: 6px; }
+        .detail-price { font-size: 20px; font-weight: 600; color: #FF3300; margin-bottom: 15px; }
+        .detail-desc { font-size: 15px; color: #444; line-height: 1.6; margin-bottom: 20px; }
+
+        /* Tags */
+        .detail-tags-row { display: flex; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
+        .detail-tag {
+            display: flex; align-items: center; gap: 6px;
+            background: #FFF0E8; color: #FF3300;
+            padding: 6px 12px; border-radius: 6px;
+            font-size: 12px; font-weight: 600;
+        }
+        .detail-tag svg { width: 16px; height: 16px; fill: currentColor; }
+        
+        /* Divider */
+        .detail-divider { border: none; border-top: 1px solid #f0f0f0; margin: 20px 0; }
+
+        /* Quantity */
+        .qty-row { display: flex; justify-content: space-between; align-items: center; margin: 25px 0; }
+        .qty-label { font-size: 16px; font-weight: 700; color: #111; }
+        .qty-controls {
+            display: flex; align-items: center; gap: 0;
+            border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;
+        }
+        .qty-btn {
+            background: transparent; border: none; padding: 8px 16px;
+            font-size: 20px; font-weight: 600; color: #FF3300;
+            cursor: pointer;
+        }
+        .qty-btn:active { background: #f9f9f9; }
+        .qty-val { padding: 0 10px; font-size: 16px; font-weight: 600; }
+
+        /* Instructions */
+        .inst-section { margin: 25px 0; }
+        .inst-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+        .inst-header svg { width: 20px; height: 20px; stroke: #111; stroke-width: 2; }
+        .inst-header h4 { font-size: 15px; font-weight: 700; color: #111; }
+        .inst-header span { font-size: 13px; font-weight: 400; color: #888; }
+        
+        .textarea-wrapper { position: relative; }
+        .textarea-wrapper textarea {
+            width: 100%; height: 100px; padding: 14px 14px 30px 14px;
+            border: 1px solid #e0e0e0; border-radius: 10px;
+            font-family: 'Poppins', sans-serif; font-size: 14px;
+            resize: none; outline: none; color: #222;
+        }
+        .textarea-wrapper textarea::placeholder { color: #aaa; }
+        .textarea-wrapper textarea:focus { border-color: #FF3300; }
+        .char-counter {
+            position: absolute; bottom: 10px; right: 14px;
+            font-size: 11px; color: #888;
+        }
+
+        /* Sticky Add to Cart Button */
+        .bottom-sticky {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            max-width: 450px; margin: 0 auto; background: #ffffff;
+            padding: 15px 20px 25px 20px;
+            border-top: 1px solid #f0f0f0;
+        }
+        .btn-add-to-cart {
+            width: 100%; padding: 18px; background: #FF3300; color: white;
+            border: none; border-radius: 12px; font-size: 18px; font-weight: 700;
+            cursor: pointer; box-shadow: 0 4px 20px rgba(255, 51, 0, 0.3);
+        }
+        .btn-add-to-cart:active { transform: scale(0.97); }
+    </style>
+</head>
+<body>
+
+    <div class="details-container">
+        
+        <!-- Header -->
         <div class="details-header">
-            <div class="top-actions">
-                <span class="icon-btn back-btn" onclick="window.location.href='menu.html'">❮</span>
-                <span class="icon-btn like-btn">❤️</span>
+            <div class="back-btn" onclick="window.location.href='menu.html'">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
             </div>
-            <img id="detail-img" src="" alt="Food" class="main-food-img">
+            <div class="header-cart" onclick="window.location.href='cart.html'">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.5"></circle><circle cx="20" cy="21" r="1.5"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                <span class="details-cart-badge">4</span>
+            </div>
         </div>
 
-        <div class="details-content">
-            <h2 id="detail-title" class="dish-title">Loading...</h2>
-            <p id="detail-price" class="dish-price text-orange"></p>
-            <p id="detail-desc" class="dish-desc"></p>
+        <!-- Main Image -->
+        <img id="detail-img" class="detail-main-img" src="" alt="Food Image">
 
-            <div class="quantity-row">
-                <span class="qty-label">Quantity</span>
-                <div class="qty-controls">
-                    <button onclick="changeQty(-1)">−</button>
-                    <span id="detail-qty">1</span>
-                    <button onclick="changeQty(1)">+</button>
-                </div>
+        <!-- Details -->
+        <div id="detail-title" class="detail-title">Loading...</div>
+        <div id="detail-price" class="detail-price">₹0</div>
+        <div id="detail-desc" class="detail-desc">Loading description...</div>
+
+        <!-- Tags -->
+        <div id="detail-tags" class="detail-tags-row"></div>
+
+        <hr class="detail-divider">
+
+        <!-- Quantity -->
+        <div class="qty-row">
+            <span class="qty-label">Quantity</span>
+            <div class="qty-controls">
+                <button class="qty-btn" onclick="updateQty(-1)">−</button>
+                <span id="qty-val" class="qty-val">2</span>
+                <button class="qty-btn" onclick="updateQty(1)">+</button>
             </div>
-
-            <div class="instructions-section">
-                <label>Special Instructions (Optional)</label>
-                <div class="textarea-wrapper">
-                    <textarea id="special-inst" maxlength="100" placeholder="E.g. Less spicy, No onion..." oninput="updateCharCount(this)"></textarea>
-                    <span id="char-count" class="char-count">0/100</span>
-                </div>
-            </div>
-
-            <button class="btn-primary" onclick="addCurrentItemToCart()">ADD TO CART</button>
-            <button class="btn-outline-orange">📞 Call Waiter</button>
         </div>
 
+        <hr class="detail-divider">
+
+        <!-- Special Instructions -->
+        <div class="inst-section">
+            <div class="inst-header">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                <h4>Special Instructions <span>(Optional)</span></h4>
+            </div>
+            <div class="textarea-wrapper">
+                <textarea id="inst-text" maxlength="100" placeholder="E.g. No onion, Less spicy, Extra raita..."></textarea>
+                <div id="char-count" class="char-counter">0/100</div>
+            </div>
+        </div>
+
+        <!-- Bottom Sticky Button -->
+        <div class="bottom-sticky">
+            <button class="btn-add-to-cart" onclick="addToCart()">ADD TO CART | ₹<span id="total-price">360</span></button>
+        </div>
     </div>
-    <script src="app.js"></script>
+
+    <script>
+        // 1. Data Mapping - Map your dish IDs to their details
+        const foodData = {
+            'chicken-biryani': {
+                name: 'Chicken Biryani',
+                price: 180,
+                img: 'menu-images/Chicken-biriyani.png',
+                desc: 'Aromatic basmati rice cooked with tender chicken and spices.',
+                tags: ['Most Ordered', "Chef's Special"]
+            },
+            'paneer-butter-masala': {
+                name: 'Paneer Butter Masala',
+                price: 160,
+                img: 'menu-images/Paneer-Butter-Masala.png',
+                desc: 'Cottage cheese cubes cooked in a rich and creamy tomato gravy.',
+                tags: []
+            },
+            'chicken-curry': {
+                name: 'Chicken Curry',
+                price: 170,
+                img: 'menu-images/Chicken-Curry.png',
+                desc: 'Tender chicken cooked in a flavorful and spicy curry.',
+                tags: ["Chef's Special"]
+            },
+            'veg-fried-rice': {
+                name: 'Veg Fried Rice',
+                price: 110,
+                img: 'menu-images/Veg-Fried-Rice.png',
+                desc: 'Stir-fried rice with mixed vegetables and aromatic spices.',
+                tags: []
+            }
+        };
+
+        // 2. Extract ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const foodId = urlParams.get('id') || 'chicken-biryani'; // Default to Chicken Biryani if no ID is passed
+        const item = foodData[foodId];
+
+        // 3. Variables for Quantity
+        let qty = 2; // Default quantity as shown in screenshot
+
+        // 4. Helper function to render UI
+        function renderDetails() {
+            if (!item) {
+                document.getElementById('detail-title').textContent = "Item Not Found";
+                return;
+            }
+
+            document.getElementById('detail-img').src = item.img;
+            document.getElementById('detail-title').textContent = item.name;
+            document.getElementById('detail-price').textContent = `₹${item.price}`;
+            document.getElementById('detail-desc').textContent = item.desc;
+
+            const tagsContainer = document.getElementById('detail-tags');
+            tagsContainer.innerHTML = ''; // Clear previous tags
+
+            item.tags.forEach(tag => {
+                const tagDiv = document.createElement('div');
+                tagDiv.className = 'detail-tag';
+
+                let svg = '';
+                if (tag === 'Most Ordered') {
+                    svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`;
+                } else if (tag === "Chef's Special") {
+                    svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3a5 5 0 0 0-5 5v1H5a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2v4a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-4h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-2V8a5 5 0 0 0-5-5z"/><path d="M7 9h10"/><path d="M7 13h10"/><circle cx="12" cy="16" r="1"/></svg>`;
+                }
+                
+                tagDiv.innerHTML = `${svg} ${tag}`;
+                tagsContainer.appendChild(tagDiv);
+            });
+
+            // Initial update of total price
+            updateTotalPrice();
+        }
+
+        // 5. Quantity and Total Price Logic
+        function updateQty(change) {
+            qty += change;
+            if (qty < 1) qty = 1;
+            document.getElementById('qty-val').textContent = qty;
+            updateTotalPrice();
+        }
+
+        function updateTotalPrice() {
+            if (item) {
+                const total = qty * item.price;
+                document.getElementById('total-price').textContent = total;
+            }
+        }
+
+        // 6. Character counter for Text Area
+        const textArea = document.getElementById('inst-text');
+        const charCount = document.getElementById('char-count');
+        textArea.addEventListener('input', () => {
+            const len = textArea.value.length;
+            charCount.textContent = `${len}/100`;
+        });
+
+        // 7. Add to Cart Action
+        function addToCart() {
+            alert(`${qty} x ${item.name} added to cart! Total: ₹${qty * item.price}`);
+            // You can redirect to cart.html here if desired:
+            // window.location.href = 'cart.html';
+        }
+
+        // 8. Initialize the page
+        renderDetails();
+
+    </script>
 </body>
 </html>
