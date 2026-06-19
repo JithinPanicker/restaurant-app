@@ -218,14 +218,16 @@
             element.querySelector('.payment-radio').classList.add('selected');
         }
 
-        // 4. Confirm Order Action
+        // 4. UPDATED: Confirm Order Action (Redirects to order-confirmed.html)
         function confirmOrder() {
             // Clear the cart from localStorage
             localStorage.removeItem('spiceCart');
             
-            // Show success message and redirect back to menu
-            alert('Order Confirmed Successfully! Your food is being prepared.');
-            window.location.href = 'menu.html';
+            // Generate a random order number between 100 and 999
+            const orderNumber = Math.floor(100 + Math.random() * 900);
+            
+            // Redirect to order-confirmed page with parameters
+            window.location.href = 'order-confirmed.html?order=' + orderNumber + '&table=05';
         }
     </script>
 </body>
