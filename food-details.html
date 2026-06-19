@@ -106,7 +106,6 @@
 <body>
 
     <div class="details-container">
-        
         <!-- Header -->
         <div class="details-header">
             <div class="back-btn" onclick="window.location.href='menu.html'">
@@ -114,13 +113,13 @@
             </div>
             <div class="header-cart" onclick="window.location.href='cart.html'">
                 <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.5"></circle><circle cx="20" cy="21" r="1.5"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                <span class="details-cart-badge">4</span>
+                <span class="details-cart-badge" id="header-cart-count">0</span>
             </div>
         </div>
 
         <!-- Main Image -->
         <img id="detail-img" class="detail-main-img" src="" alt="Food Image">
-
+        
         <!-- Details -->
         <div id="detail-title" class="detail-title">Loading...</div>
         <div id="detail-price" class="detail-price">₹0</div>
@@ -162,113 +161,88 @@
     </div>
 
     <script>
-        // 1. Data Mapping - Map your dish IDs to their details
+        // 1. Data Mapping
         const foodData = {
-            'chicken-biryani': {
-                name: 'Chicken Biryani',
-                price: 180,
-                img: 'menu-images/Chicken-biriyani.png',
-                desc: 'Aromatic basmati rice cooked with tender chicken and spices.',
-                tags: ['Most Ordered', "Chef's Special"]
-            },
-            'paneer-butter-masala': {
-                name: 'Paneer Butter Masala',
-                price: 160,
-                img: 'menu-images/Paneer-Butter-Masala.png',
-                desc: 'Cottage cheese cubes cooked in a rich and creamy tomato gravy.',
-                tags: []
-            },
-            'chicken-curry': {
-                name: 'Chicken Curry',
-                price: 170,
-                img: 'menu-images/Chicken-Curry.png',
-                desc: 'Tender chicken cooked in a flavorful and spicy curry.',
-                tags: ["Chef's Special"]
-            },
-            'veg-fried-rice': {
-                name: 'Veg Fried Rice',
-                price: 110,
-                img: 'menu-images/Veg-Fried-Rice.png',
-                desc: 'Stir-fried rice with mixed vegetables and aromatic spices.',
-                tags: []
-            }
+            'chicken-biryani': { name: 'Chicken Biryani', price: 180, img: 'menu-images/Chicken-biriyani.png', desc: 'Aromatic basmati rice cooked with tender chicken and spices.', tags: ['Most Ordered', "Chef's Special"] },
+            'paneer-butter-masala': { name: 'Paneer Butter Masala', price: 160, img: 'menu-images/Paneer-Butter-Masala.png', desc: 'Cottage cheese cubes cooked in a rich and creamy tomato gravy.', tags: [] },
+            'chicken-curry': { name: 'Chicken Curry', price: 170, img: 'menu-images/Chicken-Curry.png', desc: 'Tender chicken cooked in a flavorful and spicy curry.', tags: ["Chef's Special"] },
+            'veg-fried-rice': { name: 'Veg Fried Rice', price: 110, img: 'menu-images/Veg-Fried-Rice.png', desc: 'Stir-fried rice with mixed vegetables and aromatic spices.', tags: [] }
         };
 
         // 2. Extract ID from URL
         const urlParams = new URLSearchParams(window.location.search);
-        const foodId = urlParams.get('id') || 'chicken-biryani'; // Default to Chicken Biryani if no ID is passed
+        const foodId = urlParams.get('id') || 'chicken-biryani';
         const item = foodData[foodId];
+        let qty = 2;
 
-        // 3. Variables for Quantity
-        let qty = 2; // Default quantity as shown in screenshot
-
-        // 4. Helper function to render UI
+        // 3. Render UI
         function renderDetails() {
-            if (!item) {
-                document.getElementById('detail-title').textContent = "Item Not Found";
-                return;
-            }
-
+            if (!item) return;
             document.getElementById('detail-img').src = item.img;
             document.getElementById('detail-title').textContent = item.name;
             document.getElementById('detail-price').textContent = `₹${item.price}`;
             document.getElementById('detail-desc').textContent = item.desc;
 
             const tagsContainer = document.getElementById('detail-tags');
-            tagsContainer.innerHTML = ''; // Clear previous tags
-
+            tagsContainer.innerHTML = ''; 
             item.tags.forEach(tag => {
                 const tagDiv = document.createElement('div');
                 tagDiv.className = 'detail-tag';
-
-                let svg = '';
-                if (tag === 'Most Ordered') {
-                    svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`;
-                } else if (tag === "Chef's Special") {
-                    svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3a5 5 0 0 0-5 5v1H5a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2v4a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-4h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-2V8a5 5 0 0 0-5-5z"/><path d="M7 9h10"/><path d="M7 13h10"/><circle cx="12" cy="16" r="1"/></svg>`;
-                }
-                
+                let svg = tag === 'Most Ordered' ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>` : `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3a5 5 0 0 0-5 5v1H5a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2v4a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-4h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-2V8a5 5 0 0 0-5-5z"/><path d="M7 9h10"/><path d="M7 13h10"/><circle cx="12" cy="16" r="1"/></svg>`;
                 tagDiv.innerHTML = `${svg} ${tag}`;
                 tagsContainer.appendChild(tagDiv);
             });
-
-            // Initial update of total price
             updateTotalPrice();
+            updateCartBadge();
         }
 
-        // 5. Quantity and Total Price Logic
+        // 4. Quantity and Total Price Logic
         function updateQty(change) {
             qty += change;
             if (qty < 1) qty = 1;
             document.getElementById('qty-val').textContent = qty;
             updateTotalPrice();
         }
-
         function updateTotalPrice() {
-            if (item) {
-                const total = qty * item.price;
-                document.getElementById('total-price').textContent = total;
-            }
+            if (item) document.getElementById('total-price').textContent = qty * item.price;
         }
 
-        // 6. Character counter for Text Area
+        // 5. Character counter
         const textArea = document.getElementById('inst-text');
         const charCount = document.getElementById('char-count');
-        textArea.addEventListener('input', () => {
-            const len = textArea.value.length;
-            charCount.textContent = `${len}/100`;
-        });
+        textArea.addEventListener('input', () => { charCount.textContent = `${textArea.value.length}/100`; });
 
-        // 7. Add to Cart Action
-        function addToCart() {
-            alert(`${qty} x ${item.name} added to cart! Total: ₹${qty * item.price}`);
-            // You can redirect to cart.html here if desired:
-            // window.location.href = 'cart.html';
+        // 6. Cart badge updater
+        function updateCartBadge() {
+            let cart = JSON.parse(localStorage.getItem('spiceCart')) || [];
+            let count = 0;
+            cart.forEach(i => count += i.qty);
+            document.getElementById('header-cart-count').textContent = count;
         }
 
-        // 8. Initialize the page
-        renderDetails();
+        // 7. Add to Cart Action (Now saves to localStorage & redirects to Menu)
+        function addToCart() {
+            const cartItem = {
+                id: foodId, name: item.name, price: item.price,
+                img: item.img, qty: qty,
+                instructions: textArea.value,
+                tags: item.tags
+            };
+            let cart = JSON.parse(localStorage.getItem('spiceCart')) || [];
+            const existingIndex = cart.findIndex(i => i.id === foodId);
+            if(existingIndex > -1) {
+                cart[existingIndex].qty = qty;
+                cart[existingIndex].instructions = textArea.value;
+            } else {
+                cart.push(cartItem);
+            }
+            localStorage.setItem('spiceCart', JSON.stringify(cart));
+            
+            // Redirect back to menu.html as requested
+            window.location.href = 'menu.html';
+        }
 
+        renderDetails();
     </script>
 </body>
 </html>
