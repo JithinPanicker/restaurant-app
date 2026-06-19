@@ -207,8 +207,6 @@
                 totalItems += item.qty;
                 totalPrice += itemPriceTotal;
 
-                // Build Instruction HTML (Only show if there's a specific instruction, or always as per image)
-                // Let's always show the box, but if empty, put placeholder text.
                 const instructionText = item.instructions && item.instructions.trim() !== "" ? item.instructions : "No special instructions";
                 const isPlaceholder = item.instructions && item.instructions.trim() !== "" ? false : true;
 
@@ -261,14 +259,12 @@
             document.getElementById('bill-grand-total').textContent = `₹${totalPrice + gst}`;
         }
 
-        // Delete Item
         function deleteItem(index) {
             cart.splice(index, 1);
             localStorage.setItem('spiceCart', JSON.stringify(cart));
             renderCart();
         }
 
-        // Update Cart Quantity
         function updateCartQty(index, change) {
             cart[index].qty += change;
             if (cart[index].qty < 1) cart[index].qty = 1;
@@ -314,22 +310,32 @@
             }
         }
 
-        // Close modal if clicking outside the white sheet
         modal.addEventListener('click', function(e) {
             if (e.target === this) { closeModal(); }
         });
 
+        // ================= UPDATED: GO TO PAYMENT PAGE =================
         function placeOrder() {
             if(cart.length === 0) {
                 alert('Your cart is empty!');
             } else {
-                alert('Order Placed Successfully!');
-                localStorage.removeItem('spiceCart');
-                renderCart();
+                // Extract totals from the HTML
+                const itemTotal = document.getElementById('bill-item-total').textContent.replace('₹', '');
+                const gst = document.getElementById('bill-gst').textContent.replace('₹', '');
+                const grandTotal = document.getElementById('bill-grand-total').textContent.replace('₹', '');
+                
+                // Pass the data to the payment page via URL parameters
+                const params = new URLSearchParams({
+                    itemTotal: itemTotal,
+                    gst: gst,
+                    packing: 20, // Static packing charge as per screenshot
+                    grandTotal: grandTotal
+                });
+                
+                window.location.href = 'payment.html?' + params.toString();
             }
         }
 
-        // Initial render
         renderCart();
     </script>
 </body>

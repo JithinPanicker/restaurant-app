@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Payment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ffffff">
+    
+    <style>
+        /* Payment Page Specific Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { width: 100%; height: 100%; background: #ffffff; font-family: 'Poppins', sans-serif; display: flex; justify-content: center; align-items: flex-start; }
+        
+        .payment-wrapper {
+            width: 100%; max-width: 450px; background: #ffffff;
+            padding: 20px 20px 120px 20px; min-height: 100vh; position: relative;
+        }
+
+        /* Header */
+        .payment-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 30px; padding-top: 5px;
+        }
+        .payment-back { display: flex; align-items: center; cursor: pointer; }
+        .payment-title { font-size: 20px; font-weight: 700; color: #111; }
+        .payment-user { font-size: 17px; font-weight: 700; color: #FF3300; }
+
+        /* Summary Card */
+        .order-summary-card {
+            background: #ffffff; border: 1px solid #f0f0f0;
+            border-radius: 16px; padding: 20px; margin-bottom: 25px;
+        }
+        .summary-title {
+            font-size: 16px; font-weight: 700; color: #111;
+            margin-bottom: 15px;
+        }
+        .summary-row {
+            display: flex; justify-content: space-between; font-size: 14px; color: #333;
+            margin-bottom: 12px;
+        }
+        .summary-divider {
+            border: none; border-top: 1px solid #f0f0f0; margin: 15px 0;
+        }
+        .summary-total {
+            display: flex; justify-content: space-between;
+            font-size: 18px; font-weight: 700; color: #111;
+            margin-top: 5px;
+        }
+
+        /* Payment Methods */
+        .payment-method-title {
+            font-size: 16px; font-weight: 700; color: #111;
+            margin-bottom: 15px;
+        }
+        .payment-option {
+            display: flex; align-items: center;
+            border: 1px solid #e0e0e0; border-radius: 12px;
+            padding: 15px; margin-bottom: 15px; cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        .payment-option:hover, .payment-option.active {
+            border-color: #FF3300;
+        }
+
+        .payment-icon-box {
+            width: 44px; height: 44px; background: #f9f9f9;
+            border-radius: 10px; display: flex; justify-content: center; align-items: center;
+            margin-right: 15px; flex-shrink: 0;
+        }
+        .payment-icon-box svg { width: 24px; height: 24px; }
+
+        .payment-content { flex-grow: 1; display: flex; flex-direction: column; gap: 2px; }
+        .payment-content h5 { font-size: 14px; font-weight: 700; color: #111; }
+        .payment-content p { font-size: 12px; color: #666; }
+
+        /* Custom Radio Button */
+        .payment-radio {
+            width: 22px; height: 22px; border-radius: 50%;
+            border: 2px solid #888; flex-shrink: 0;
+            display: flex; justify-content: center; align-items: center;
+            transition: all 0.2s; margin-left: 5px;
+        }
+        .payment-radio.selected {
+            border-color: #FF3300;
+        }
+        .payment-radio.selected::after {
+            content: ''; width: 12px; height: 12px;
+            border-radius: 50%; background: #FF3300;
+        }
+
+        /* Note */
+        .payment-note-title {
+            font-size: 14px; font-weight: 700; color: #FF3300;
+            margin-bottom: 8px;
+        }
+        .payment-note-row {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 13px; color: #333; margin-bottom: 20px;
+        }
+        .payment-note-row svg { width: 18px; height: 18px; stroke: #111; }
+
+        /* Bottom Button */
+        .payment-bottom-sticky {
+            position: fixed; bottom: 0; left: 0; right: 0; max-width: 450px; margin: 0 auto;
+            background: #ffffff; padding: 15px 20px 25px 20px; border-top: 1px solid #f0f0f0;
+        }
+        .btn-confirm-order {
+            width: 100%; padding: 18px; background: #FF3300; color: white;
+            border: none; border-radius: 12px; font-size: 18px; font-weight: 700;
+            cursor: pointer; box-shadow: 0 4px 20px rgba(255, 51, 0, 0.3);
+            letter-spacing: 0.5px;
+        }
+        .btn-confirm-order:active { transform: scale(0.97); }
+    </style>
+</head>
+<body>
+
+    <div class="payment-wrapper">
+        
+        <!-- Header -->
+        <div class="payment-header">
+            <div class="payment-back" onclick="window.location.href='cart.html'">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            </div>
+            <h2 class="payment-title">Payment</h2>
+            <div class="payment-user">Arjun</div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="order-summary-card">
+            <div class="summary-title">Order Summary</div>
+            
+            <div class="summary-row">
+                <span>Items Total</span>
+                <span id="display-item-total">₹0</span>
+            </div>
+            <div class="summary-row">
+                <span>GST Charges</span>
+                <span id="display-gst">₹0</span>
+            </div>
+            <div class="summary-row">
+                <span>Packing Charges</span>
+                <span id="display-packing">₹0</span>
+            </div>
+            
+            <hr class="summary-divider">
+            
+            <div class="summary-total">
+                <span>Total Amount</span>
+                <span id="display-grand-total">₹0</span>
+            </div>
+        </div>
+
+        <!-- Select Payment Method -->
+        <div class="payment-method-title">Select Payment Method</div>
+        
+        <div class="payment-option selected" onclick="selectPayment(this, 'online')">
+            <div class="payment-icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line><circle cx="9" cy="15" r="2" fill="#FF3300" stroke="#FF3300"/></svg>
+            </div>
+            <div class="payment-content">
+                <h5>Online Payment</h5>
+                <p>Pay using any UPI app</p>
+            </div>
+            <div class="payment-radio selected"></div>
+        </div>
+
+        <div class="payment-option" onclick="selectPayment(this, 'cash')">
+            <div class="payment-icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-7l-2 3h-2L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><circle cx="12" cy="13" r="3" fill="#FF3300" stroke="#FF3300"/></svg>
+            </div>
+            <div class="payment-content">
+                <h5>Cash Payment</h5>
+                <p>Pay at the restaurant</p>
+            </div>
+            <div class="payment-radio"></div>
+        </div>
+
+        <!-- Note -->
+        <div class="payment-note-title">Note</div>
+        <div class="payment-note-row">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <span>Payments are safe and secured.</span>
+        </div>
+
+        <!-- Fixed Bottom Button -->
+        <div class="payment-bottom-sticky">
+            <button class="btn-confirm-order" onclick="confirmOrder()">CONFIRM ORDER</button>
+        </div>
+    </div>
+
+    <script>
+        // 1. Get Data from URL Parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const itemTotal = urlParams.get('itemTotal') || '0';
+        const gst = urlParams.get('gst') || '0';
+        const packing = urlParams.get('packing') || '0';
+        const grandTotal = urlParams.get('grandTotal') || '0';
+
+        // 2. Display Data
+        document.getElementById('display-item-total').textContent = `₹${itemTotal}`;
+        document.getElementById('display-gst').textContent = `₹${gst}`;
+        document.getElementById('display-packing').textContent = `₹${packing}`;
+        document.getElementById('display-grand-total').textContent = `₹${grandTotal}`;
+
+        // 3. Payment Method Selection Logic
+        function selectPayment(element, type) {
+            // Remove active/selected classes from all options and radios
+            document.querySelectorAll('.payment-option').forEach(opt => {
+                opt.classList.remove('selected');
+                opt.querySelector('.payment-radio').classList.remove('selected');
+            });
+            // Add classes to clicked element
+            element.classList.add('selected');
+            element.querySelector('.payment-radio').classList.add('selected');
+        }
+
+        // 4. Confirm Order Action
+        function confirmOrder() {
+            // Clear the cart from localStorage
+            localStorage.removeItem('spiceCart');
+            
+            // Show success message and redirect back to menu
+            alert('Order Confirmed Successfully! Your food is being prepared.');
+            window.location.href = 'menu.html';
+        }
+    </script>
+</body>
+</html>
