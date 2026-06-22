@@ -128,13 +128,13 @@
             </div>
             <span>Cash Pending</span>
         </div>
-        <div class="nav-item">
+        <div class="nav-item" onclick="window.location.href='ready-to-serve.html'">
             <div class="nav-icon-wrapper">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="10"></circle>
                     <polyline points="12 6 12 12 16 14"></polyline>
                 </svg>
-                <span class="nav-badge">3</span>
+                <span class="nav-badge" id="readyBadge">0</span>
             </div>
             <span>Ready to Serve</span>
         </div>
@@ -237,9 +237,19 @@
 
             window.collectCash = function(index) {
                 let orders = JSON.parse(localStorage.getItem('cashPendingOrders')) || [];
+                let movedOrder = orders[index];
+                
+                // Remove from Cash Pending list
                 orders.splice(index, 1);
                 localStorage.setItem('cashPendingOrders', JSON.stringify(orders));
-                renderCashPendingOrders(); // Re-render list immediately
+
+                // Add to Ready to Serve list
+                let readyOrders = JSON.parse(localStorage.getItem('readyToServeOrders')) || [];
+                readyOrders.push(movedOrder);
+                localStorage.setItem('readyToServeOrders', JSON.stringify(readyOrders));
+
+                // Redirect to Ready to Serve page
+                window.location.href = 'ready-to-serve.html';
             };
 
             renderCashPendingOrders();
