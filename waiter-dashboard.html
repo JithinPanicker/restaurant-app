@@ -62,6 +62,12 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             border: 1px solid #f0f0f0;
             margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        .order-card.accepted {
+            opacity: 0.5;
+            pointer-events: none;
+            background: #f5f5f5;
         }
         .card-top {
             display: flex;
@@ -181,6 +187,10 @@
             align-items: center;
             gap: 6px;
             cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-accept-order:active {
+            background: #b5151a;
         }
 
         /* Bottom Navigation */
@@ -230,6 +240,12 @@
         .nav-item.active .nav-badge {
             background: #d91e24;
         }
+        .empty-msg {
+            text-align: center;
+            color: #777;
+            padding: 40px 0;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -237,7 +253,7 @@
     <div class="container">
         <!-- Top Header -->
         <header class="top-header">
-            <div class="header-icon" style="display: flex; align-items: center;">
+            <div class="header-icon" style="display: flex; align-items: center;" onclick="window.location.href='menu.html'">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="3" y1="12" x2="21" y2="12"></line>
                     <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -255,157 +271,159 @@
 
         <!-- Sub Header -->
         <div class="sub-header">
-            <h3>New Orders <span>(3)</span></h3>
+            <h3>New Orders <span id="orderCount">(3)</span></h3>
         </div>
 
-        <!-- Order Card 1: Table 05 -->
-        <div class="order-card">
-            <div class="card-top">
-                <div class="table-info">
-                    <div class="table-icon-box">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d91e24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 3h18v18H3z"></path>
-                            <path d="M3 9h18"></path>
-                            <path d="M9 21V9"></path>
-                        </svg>
+        <div id="orderListContainer">
+            <!-- Order Card 1: Table 05 -->
+            <div class="order-card" data-order='{"table":"Table 05", "id":"#ORD1258", "time":"10:24 AM", "payment":"CASH", "items":"1x Margherita Pizza, 1x Veg Pasta", "count":"2 Items", "total":"₹560"}'>
+                <div class="card-top">
+                    <div class="table-info">
+                        <div class="table-icon-box">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d91e24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 3h18v18H3z"></path>
+                                <path d="M3 9h18"></path>
+                                <path d="M9 21V9"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Table 05</h4>
+                            <div class="order-id">Order ID: #ORD1258</div>
+                        </div>
                     </div>
-                    <div>
-                        <h4>Table 05</h4>
-                        <div class="order-id">Order ID: #ORD1258</div>
+                    <div class="time-status">
+                        <div class="badge-group">
+                            <span class="time">10:24 AM</span>
+                            <span class="status-dot red"></span>
+                            <span class="badge cash">CASH</span>
+                        </div>
                     </div>
                 </div>
-                <div class="time-status">
-                    <div class="badge-group">
-                        <span class="time">10:24 AM</span>
-                        <span class="status-dot red"></span>
-                        <span class="badge cash">CASH</span>
-                    </div>
+                <div class="card-middle">
+                    <div>2 Items</div>
+                    <div>₹560</div>
+                </div>
+                <div class="items-list">1x Margherita Pizza, 1x Veg Pasta</div>
+                <div class="card-actions">
+                    <button class="btn-view-details">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="8" y1="6" x2="21" y2="6"></line>
+                            <line x1="8" y1="12" x2="21" y2="12"></line>
+                            <line x1="8" y1="18" x2="21" y2="18"></line>
+                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                        </svg> View Details
+                    </button>
+                    <button class="btn-accept-order">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg> Accept Order
+                    </button>
                 </div>
             </div>
-            <div class="card-middle">
-                <div>2 Items</div>
-                <div>₹560</div>
-            </div>
-            <div class="items-list">1x Margherita Pizza, 1x Veg Pasta</div>
-            <div class="card-actions">
-                <button class="btn-view-details">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="8" y1="6" x2="21" y2="6"></line>
-                        <line x1="8" y1="12" x2="21" y2="12"></line>
-                        <line x1="8" y1="18" x2="21" y2="18"></line>
-                        <line x1="3" y1="6" x2="3.01" y2="6"></line>
-                        <line x1="3" y1="12" x2="3.01" y2="12"></line>
-                        <line x1="3" y1="18" x2="3.01" y2="18"></line>
-                    </svg> View Details
-                </button>
-                <button class="btn-accept-order">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg> Accept Order
-                </button>
-            </div>
-        </div>
 
-        <!-- Order Card 2: Table 12 -->
-        <div class="order-card">
-            <div class="card-top">
-                <div class="table-info">
-                    <div class="table-icon-box blue">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 3h18v18H3z"></path>
-                            <path d="M3 9h18"></path>
-                            <path d="M9 21V9"></path>
-                        </svg>
+            <!-- Order Card 2: Table 12 -->
+            <div class="order-card" data-order='{"table":"Table 12", "id":"#ORD1257", "time":"10:26 AM", "payment":"ONLINE", "items":"1x Veg Burger, 1x French Fries, 1x Coke", "count":"3 Items", "total":"₹920"}'>
+                <div class="card-top">
+                    <div class="table-info">
+                        <div class="table-icon-box blue">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 3h18v18H3z"></path>
+                                <path d="M3 9h18"></path>
+                                <path d="M9 21V9"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Table 12</h4>
+                            <div class="order-id">Order ID: #ORD1257</div>
+                        </div>
                     </div>
-                    <div>
-                        <h4>Table 12</h4>
-                        <div class="order-id">Order ID: #ORD1257</div>
+                    <div class="time-status">
+                        <div class="badge-group">
+                            <span class="time">10:26 AM</span>
+                            <span class="status-dot blue"></span>
+                            <span class="badge online">ONLINE</span>
+                        </div>
                     </div>
                 </div>
-                <div class="time-status">
-                    <div class="badge-group">
-                        <span class="time">10:26 AM</span>
-                        <span class="status-dot blue"></span>
-                        <span class="badge online">ONLINE</span>
-                    </div>
+                <div class="card-middle">
+                    <div>3 Items</div>
+                    <div>₹920</div>
+                </div>
+                <div class="items-list">1x Veg Burger, 1x French Fries, 1x Coke</div>
+                <div class="card-actions">
+                    <button class="btn-view-details">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="8" y1="6" x2="21" y2="6"></line>
+                            <line x1="8" y1="12" x2="21" y2="12"></line>
+                            <line x1="8" y1="18" x2="21" y2="18"></line>
+                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                        </svg> View Details
+                    </button>
+                    <button class="btn-accept-order">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg> Accept Order
+                    </button>
                 </div>
             </div>
-            <div class="card-middle">
-                <div>3 Items</div>
-                <div>₹920</div>
-            </div>
-            <div class="items-list">1x Veg Burger, 1x French Fries, 1x Coke</div>
-            <div class="card-actions">
-                <button class="btn-view-details">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="8" y1="6" x2="21" y2="6"></line>
-                        <line x1="8" y1="12" x2="21" y2="12"></line>
-                        <line x1="8" y1="18" x2="21" y2="18"></line>
-                        <line x1="3" y1="6" x2="3.01" y2="6"></line>
-                        <line x1="3" y1="12" x2="3.01" y2="12"></line>
-                        <line x1="3" y1="18" x2="3.01" y2="18"></line>
-                    </svg> View Details
-                </button>
-                <button class="btn-accept-order">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg> Accept Order
-                </button>
-            </div>
-        </div>
 
-        <!-- Order Card 3: Table 09 -->
-        <div class="order-card">
-            <div class="card-top">
-                <div class="table-info">
-                    <div class="table-icon-box green">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a8a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 3h18v18H3z"></path>
-                            <path d="M3 9h18"></path>
-                            <path d="M9 21V9"></path>
-                        </svg>
+            <!-- Order Card 3: Table 09 -->
+            <div class="order-card" data-order='{"table":"Table 09", "id":"#ORD1259", "time":"10:28 AM", "payment":"CASH", "items":"1x Grilled Sandwich, 1x Cold Coffee", "count":"2 Items", "total":"₹480"}'>
+                <div class="card-top">
+                    <div class="table-info">
+                        <div class="table-icon-box green">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a8a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 3h18v18H3z"></path>
+                                <path d="M3 9h18"></path>
+                                <path d="M9 21V9"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Table 09</h4>
+                            <div class="order-id">Order ID: #ORD1259</div>
+                        </div>
                     </div>
-                    <div>
-                        <h4>Table 09</h4>
-                        <div class="order-id">Order ID: #ORD1259</div>
+                    <div class="time-status">
+                        <div class="badge-group">
+                            <span class="time">10:28 AM</span>
+                            <span class="status-dot red"></span>
+                            <span class="badge cash">CASH</span>
+                        </div>
                     </div>
                 </div>
-                <div class="time-status">
-                    <div class="badge-group">
-                        <span class="time">10:28 AM</span>
-                        <span class="status-dot red"></span>
-                        <span class="badge cash">CASH</span>
-                    </div>
+                <div class="card-middle">
+                    <div>2 Items</div>
+                    <div>₹480</div>
                 </div>
-            </div>
-            <div class="card-middle">
-                <div>2 Items</div>
-                <div>₹480</div>
-            </div>
-            <div class="items-list">1x Grilled Sandwich, 1x Cold Coffee</div>
-            <div class="card-actions">
-                <button class="btn-view-details">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="8" y1="6" x2="21" y2="6"></line>
-                        <line x1="8" y1="12" x2="21" y2="12"></line>
-                        <line x1="8" y1="18" x2="21" y2="18"></line>
-                        <line x1="3" y1="6" x2="3.01" y2="6"></line>
-                        <line x1="3" y1="12" x2="3.01" y2="12"></line>
-                        <line x1="3" y1="18" x2="3.01" y2="18"></line>
-                    </svg> View Details
-                </button>
-                <button class="btn-accept-order">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg> Accept Order
-                </button>
+                <div class="items-list">1x Grilled Sandwich, 1x Cold Coffee</div>
+                <div class="card-actions">
+                    <button class="btn-view-details">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="8" y1="6" x2="21" y2="6"></line>
+                            <line x1="8" y1="12" x2="21" y2="12"></line>
+                            <line x1="8" y1="18" x2="21" y2="18"></line>
+                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                        </svg> View Details
+                    </button>
+                    <button class="btn-accept-order">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg> Accept Order
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Bottom Navigation -->
     <nav class="bottom-nav">
-        <div class="nav-item active">
+        <div class="nav-item active" onclick="window.location.href='waiter-dashboard.html'">
             <div class="nav-icon-wrapper">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
@@ -415,13 +433,13 @@
             </div>
             <span>New Orders</span>
         </div>
-        <div class="nav-item">
+        <div class="nav-item" onclick="window.location.href='waiter-verification.html'">
             <div class="nav-icon-wrapper">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="10"></circle>
                     <polyline points="12 6 12 12 16 14"></polyline>
                 </svg>
-                <span class="nav-badge">3</span>
+                <span class="nav-badge" id="verificationBadge">0</span>
             </div>
             <span>Order Verification</span>
         </div>
@@ -456,5 +474,55 @@
             <span>Requests</span>
         </div>
     </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const orderContainer = document.getElementById('orderListContainer');
+            const orderCountSpan = document.getElementById('orderCount');
+            const verificationBadge = document.getElementById('verificationBadge');
+
+            // Update badge count for verification page
+            let verificationOrders = JSON.parse(localStorage.getItem('pendingVerificationOrders')) || [];
+            verificationBadge.textContent = verificationOrders.length;
+
+            // Add click event listeners to all accept buttons
+            orderContainer.querySelectorAll('.btn-accept-order').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const card = this.closest('.order-card');
+                    const orderDataStr = card.getAttribute('data-order');
+                    const orderData = JSON.parse(orderDataStr);
+
+                    // Only move CASH orders to verification
+                    if(orderData.payment === 'CASH') {
+                        // Retrieve current pending verifications
+                        let pendingOrders = JSON.parse(localStorage.getItem('pendingVerificationOrders')) || [];
+                        
+                        // Add the new order
+                        pendingOrders.push(orderData);
+                        localStorage.setItem('pendingVerificationOrders', JSON.stringify(pendingOrders));
+
+                        // Update bottom badge immediately
+                        verificationBadge.textContent = pendingOrders.length;
+
+                        // Remove the card from the DOM visually
+                        card.remove();
+
+                        // Update the count text
+                        const remainingCards = orderContainer.querySelectorAll('.order-card').length;
+                        orderCountSpan.textContent = `(${remainingCards})`;
+
+                        // Navigate to verification page
+                        window.location.href = 'waiter-verification.html';
+                    } else {
+                        alert('This is an ONLINE order. It will proceed directly to preparation.');
+                        // For online orders, maybe just remove it too:
+                        card.remove();
+                        const remainingCards = orderContainer.querySelectorAll('.order-card').length;
+                        orderCountSpan.textContent = `(${remainingCards})`;
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
