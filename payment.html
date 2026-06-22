@@ -208,26 +208,37 @@
 
         // 3. Payment Method Selection Logic
         function selectPayment(element, type) {
-            // Remove active/selected classes from all options and radios
             document.querySelectorAll('.payment-option').forEach(opt => {
                 opt.classList.remove('selected');
                 opt.querySelector('.payment-radio').classList.remove('selected');
             });
-            // Add classes to clicked element
             element.classList.add('selected');
             element.querySelector('.payment-radio').classList.add('selected');
         }
 
-        // 4. UPDATED: Confirm Order Action (Redirects to order-confirmed.html)
+        // 4. Confirm Order Action (Sends Request Bill & Goes to Requests Page)
         function confirmOrder() {
             // Clear the cart from localStorage
             localStorage.removeItem('spiceCart');
             
-            // Generate a random order number between 100 and 999
-            const orderNumber = Math.floor(100 + Math.random() * 900);
-            
-            // Redirect to order-confirmed page with parameters
-            window.location.href = 'order-confirmed.html?order=' + orderNumber + '&table=05';
+            // Get current time for the request
+            const now = new Date();
+            const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const timestamp = now.getTime();
+
+            // Create a "Request Bill" entry for the waiter dashboard
+            let waiterRequests = JSON.parse(localStorage.getItem('waiterRequests')) || [];
+            waiterRequests.push({
+                type: 'Request Bill',
+                table: 'Table 05',
+                time: timeString,
+                timestamp: timestamp,
+                status: 'Pending'
+            });
+            localStorage.setItem('waiterRequests', JSON.stringify(waiterRequests));
+
+            // Redirect to the Requests page in the waiter dashboard folder
+            window.location.href = 'waiter-dashboard/requests.html';
         }
     </script>
 </body>
