@@ -1,4 +1,4 @@
-const CACHE_NAME = 'spice-delight-v35'; // Changed to v35
+const CACHE_NAME = 'spice-delight-v36'; // Changed to v36
 
 const assets = [
   './',
