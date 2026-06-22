@@ -253,7 +253,8 @@
     <div class="container">
         <!-- Top Header -->
         <header class="top-header">
-            <div class="header-icon" style="display: flex; align-items: center;" onclick="window.location.href='menu.html'">
+            <!-- FIXED: Used absolute root path (/) to get back to menu.html -->
+            <div class="header-icon" style="display: flex; align-items: center;" onclick="window.location.href='/menu.html'">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="3" y1="12" x2="21" y2="12"></line>
                     <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -423,7 +424,8 @@
 
     <!-- Bottom Navigation -->
     <nav class="bottom-nav">
-        <div class="nav-item active" onclick="window.location.href='waiter-dashboard.html'">
+        <!-- FIXED: All bottom nav links updated to absolute root paths (/) -->
+        <div class="nav-item active" onclick="window.location.href='/waiter-dashboard/waiter-dashboard.html'">
             <div class="nav-icon-wrapper">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
@@ -433,7 +435,7 @@
             </div>
             <span>New Orders</span>
         </div>
-        <div class="nav-item" onclick="window.location.href='waiter-verification.html'">
+        <div class="nav-item" onclick="window.location.href='/waiter-verification.html'">
             <div class="nav-icon-wrapper">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="10"></circle>
@@ -443,7 +445,7 @@
             </div>
             <span>Order Verification</span>
         </div>
-        <div class="nav-item">
+        <div class="nav-item" onclick="window.location.href='/cash-pending.html'">
             <div class="nav-icon-wrapper">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
@@ -453,7 +455,7 @@
             </div>
             <span>Cash Pending</span>
         </div>
-        <div class="nav-item">
+        <div class="nav-item" onclick="window.location.href='/ready-to-serve.html'">
             <div class="nav-icon-wrapper">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="10"></circle>
@@ -463,7 +465,7 @@
             </div>
             <span>Ready to Serve</span>
         </div>
-        <div class="nav-item">
+        <div class="nav-item" onclick="window.location.href='/requests.html'">
             <div class="nav-icon-wrapper">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
@@ -512,7 +514,7 @@
                         orderCountSpan.textContent = `(${remainingCards})`;
 
                         // Navigate to verification page
-                        window.location.href = 'waiter-verification.html';
+                        window.location.href = '/waiter-verification.html';
                     } else {
                         alert('This is an ONLINE order. It will proceed directly to preparation.');
                         // For online orders, maybe just remove it too:
