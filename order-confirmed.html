@@ -101,13 +101,13 @@
             
             <h1 class="success-title">Order Placed!</h1>
             <h2 class="order-num">Order #<span id="display-order-num">101</span></h2>
-            <p class="success-desc">We’ve received your order<br>and it is being prepared.</p>
+            <p class="success-desc">We've received your order<br>and it is being prepared.</p>
         </div>
 
         <!-- Action Buttons -->
         <div class="success-actions">
             <div class="action-row">
-                <button class="action-btn" onclick="alert('Calling the waiter!');">
+                <button class="action-btn" onclick="callWaiter()">
                     <!-- Bell Icon -->
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
                     Call Waiter
@@ -136,6 +136,24 @@
         // Update the page with the dynamic values
         document.getElementById('display-order-num').textContent = orderId;
         document.getElementById('header-table-text').textContent = `Table ${tableId}`;
+
+        // UPDATED: Call Waiter Function - sends real request to Waiter Dashboard
+        function callWaiter() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const timestamp = now.getTime();
+
+            let waiterRequests = JSON.parse(localStorage.getItem('waiterRequests')) || [];
+            waiterRequests.push({
+                type: 'Call Waiter',
+                table: 'Table 05',
+                time: timeString,
+                timestamp: timestamp,
+                status: 'Pending'
+            });
+            localStorage.setItem('waiterRequests', JSON.stringify(waiterRequests));
+            alert('Waiter has been called! You can check the status in the Restaurant Dashboard.');
+        }
     </script>
 </body>
 </html>
