@@ -3,74 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Waiter - Requests</title>
+    <title>Waiter Dashboard - Requests</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background-color: #f9f9f9; padding-bottom: 85px; color: #1a1a1a; }
         .container { max-width: 480px; margin: 0 auto; padding: 15px 15px 0 15px; background: #fff; }
 
-        /* Header */
+        /* Top Header */
         .top-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 0 20px 0; }
-        .top-header h2 { font-size: 18px; font-weight: 600; }
+        .top-header h2 { font-size: 20px; font-weight: 600; color: #1a1a1a; }
         .header-icon { width: 24px; height: 24px; cursor: pointer; }
 
         /* Sub header */
-        .sub-header { margin-bottom: 15px; }
-        .sub-header h3 { color: #ff4d00; font-size: 18px; font-weight: 600; margin-bottom: 4px; }
-        .sub-header p { font-size: 13px; color: #777; }
+        .sub-header { margin-bottom: 20px; }
+        .sub-header h3 { color: #ff4b00; font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+        .sub-header h3 span { font-weight: 400; }
+        .sub-desc { font-size: 14px; color: #777; line-height: 1.4; }
 
-        /* Tabs */
-        .tabs-container { display: flex; gap: 12px; margin-bottom: 20px; }
-        .tab-btn { 
-            flex: 1; display: flex; justify-content: center; align-items: center; gap: 8px; 
-            padding: 10px; border-radius: 8px; border: 1px solid #e0e0e0; background: #fff; 
-            font-weight: 600; font-size: 14px; color: #1a1a1a; cursor: pointer; transition: all 0.2s;
-        }
-        .tab-btn.active { background: #ff4d00; border-color: #ff4d00; color: #fff; }
-        .tab-btn svg { width: 20px; height: 20px; stroke: currentColor; fill: none; }
-        .tab-btn.active svg { fill: none; stroke: #fff; }
-        
-        .tab-btn.inactive-icon svg { stroke: #ff4d00; }
+        /* Segmented Control (Toggle) */
+        .segmented-control { background: #f9f9f9; padding: 4px; border-radius: 10px; display: flex; margin-bottom: 20px; }
+        .tab-btn { flex: 1; background: transparent; border: none; padding: 10px; font-weight: 600; font-size: 14px; color: #555; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 8px; transition: all 0.2s; }
+        .tab-btn svg { stroke: #555; }
+        .tab-btn.active { background: #ff4b00; color: #fff; }
+        .tab-btn.active svg { stroke: #fff; }
 
         /* Request Card */
-        .request-card { background: #fff; border-radius: 12px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #f0f0f0; margin-bottom: 15px; }
+        .req-card { background: #fff; border-radius: 12px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #f0f0f0; margin-bottom: 15px; transition: all 0.3s ease; position: relative; }
+        .req-card.completed { opacity: 0.5; pointer-events: none; background: #f5f5f5; transform: scale(0.98); }
         
         .card-top { display: flex; justify-content: space-between; align-items: flex-start; }
-        .req-info { display: flex; gap: 12px; }
-        .req-icon-box { width: 50px; height: 50px; background: #fff0f0; border-radius: 12px; display: flex; justify-content: center; align-items: center; }
-        .req-icon-box svg { width: 28px; height: 28px; stroke: #ff4d00; fill: none; stroke-width: 2; }
-        .req-details { display: flex; flex-direction: column; gap: 4px; }
-        .req-title { font-size: 16px; font-weight: 600; }
-        .req-table { font-size: 13px; color: #555; }
-        .req-time-row { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #555; margin-top: 2px; }
-        .req-time-row svg { width: 14px; height: 14px; stroke: #555; }
-        .chevron-icon { width: 16px; height: 16px; stroke: #111; margin-left: auto; }
         
-        .status-badge-pending { background: #fde8e8; color: #ff4d00; padding: 2px 12px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+        .card-header-left { display: flex; gap: 12px; flex: 1; }
+        .req-icon-box { width: 48px; height: 48px; background: #fff0f0; border-radius: 8px; display: flex; justify-content: center; align-items: center; flex-shrink: 0; }
+        .req-info { display: flex; flex-direction: column; gap: 2px; }
+        .req-title { font-size: 16px; font-weight: 600; color: #1a1a1a; }
+        .req-subtitle { font-size: 13px; color: #555; }
+        .req-time { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #777; margin-top: 4px; }
+        .req-time svg { stroke: #777; }
 
-        .card-actions { display: flex; gap: 12px; margin-top: 15px; border-top: 1px solid #f5f5f5; padding-top: 15px; }
-        .btn-cancel-req { flex: 1; background: #fff; border: 1px solid #ff4d00; color: #ff4d00; padding: 10px; border-radius: 8px; font-weight: 500; font-size: 13px; display: flex; justify-content: center; align-items: center; gap: 6px; cursor: pointer; }
-        .btn-complete-req { flex: 1.5; background: #ff4d00; border: none; color: #fff; padding: 10px; border-radius: 8px; font-weight: 500; font-size: 13px; display: flex; justify-content: center; align-items: center; gap: 6px; cursor: pointer; transition: background 0.2s; }
-        .btn-complete-req:active { background: #e64400; }
+        .card-header-right { display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; height: 100%; min-height: 48px; }
+        .badge-status { background: #ffece8; color: #ff4b00; font-size: 10px; font-weight: 600; padding: 4px 10px; border-radius: 20px; }
+        .chevron-right { margin-top: auto; cursor: pointer; }
+        .chevron-right svg { stroke: #1a1a1a; }
+
+        /* Actions */
+        .card-actions { display: flex; gap: 12px; margin-top: 18px; }
+        .btn-cancel { flex: 1; background: #fff; border: 1px solid #ff4b00; color: #1a1a1a; padding: 10px; border-radius: 8px; font-weight: 500; font-size: 13px; display: flex; justify-content: center; align-items: center; gap: 6px; cursor: pointer; }
+        .btn-cancel svg { stroke: #ff4b00; }
+        .btn-complete { flex: 1; background: #ff4b00; border: none; color: #fff; padding: 10px; border-radius: 8px; font-weight: 500; font-size: 13px; display: flex; justify-content: center; align-items: center; gap: 6px; cursor: pointer; transition: background 0.2s; }
+        .btn-complete:active { background: #d63c00; }
 
         /* Bottom Navigation */
         .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 10px 0 20px 0; border-top: 1px solid #eee; box-shadow: 0 -2px 8px rgba(0,0,0,0.02); }
         .nav-item { display: flex; flex-direction: column; align-items: center; font-size: 10px; color: #999; cursor: pointer; position: relative; gap: 4px; }
-        .nav-item.active { color: #ff4d00; }
+        .nav-item.active { color: #ff4b00; }
+        .nav-item.active svg { stroke: #ff4b00; }
         .nav-icon-wrapper { position: relative; }
         .nav-badge { position: absolute; top: -6px; right: -8px; background: #1a1a1a; color: #fff; font-size: 9px; font-weight: 600; width: 16px; height: 16px; border-radius: 50%; display: flex; justify-content: center; align-items: center; }
-        .nav-item.active .nav-badge { background: #ff4d00; }
-        .empty-msg { text-align: center; color: #777; padding: 40px 0; font-size: 14px; }
+        .nav-item.active .nav-badge { background: #ff4b00; }
+        .empty-msg { text-align: center; color: #777; padding: 40px 0; font-size: 14px; display: none; }
     </style>
 </head>
 <body>
-
     <div class="container">
         <!-- Top Header -->
         <header class="top-header">
-            <div class="header-icon" style="display: flex; align-items: center;" onclick="window.location.href='waiter-dashboard.html'">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <div class="header-icon" style="display: flex; align-items: center;" onclick="window.location.href='menu.html'">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="3" y1="12" x2="21" y2="12"></line>
                     <line x1="3" y1="6" x2="21" y2="6"></line>
                     <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -78,34 +78,43 @@
             </div>
             <h2>Requests</h2>
             <div class="header-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
-                    <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
                 </svg>
             </div>
         </header>
 
         <!-- Sub Header -->
         <div class="sub-header">
-            <h3>Requests <span id="totalRequestsCount" style="font-weight: 400;">(0)</span></h3>
-            <p>View and manage all the requests raised by staff or customers.</p>
+            <h3>Requests <span id="requestCount">(4)</span></h3>
+            <p class="sub-desc">View and manage all the requests raised by staff or customers.</p>
         </div>
 
-        <!-- Tab Buttons -->
-        <div class="tabs-container">
-            <button class="tab-btn active" onclick="switchTab('Call Waiter')" id="tabCallWaiter">
-                <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                Call Waiter (<span id="callWaiterCount">0</span>)
+        <!-- Segmented Control -->
+        <div class="segmented-control">
+            <button class="tab-btn active" data-type="CALL">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                </svg>
+                Call Waiter (2)
             </button>
-            <button class="tab-btn inactive-icon" onclick="switchTab('Request Bill')" id="tabRequestBill">
-                <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line><path d="M16 13h-3"></path><path d="M16 17h-3"></path><circle cx="8" cy="15" r="1" fill="currentColor"/></svg>
-                Request Bill (<span id="billCount">0</span>)
+            <button class="tab-btn" data-type="BILL">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                Request Bill (2)
             </button>
         </div>
 
         <div id="requestListContainer">
-            <!-- Cards will be rendered by JS -->
-            <div class="empty-msg">No requests found.</div>
+            <div class="empty-msg" id="emptyMsg">No pending requests in this category.</div>
         </div>
     </div>
 
@@ -121,7 +130,7 @@
             </div>
             <span>New Orders</span>
         </div>
-        <div class="nav-item" onclick="window.location.href='../waiter-verification.html'">
+        <div class="nav-item" onclick="window.location.href='waiter-verification.html'">
             <div class="nav-icon-wrapper">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="10"></circle>
@@ -131,7 +140,7 @@
             </div>
             <span>Order Verification</span>
         </div>
-        <div class="nav-item" onclick="window.location.href='../cash-pending.html'">
+        <div class="nav-item" onclick="window.location.href='cash-pending.html'">
             <div class="nav-icon-wrapper">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
@@ -141,7 +150,7 @@
             </div>
             <span>Cash Pending</span>
         </div>
-        <div class="nav-item" onclick="window.location.href='../ready-to-serve.html'">
+        <div class="nav-item" onclick="window.location.href='ready-to-serve.html'">
             <div class="nav-icon-wrapper">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="10"></circle>
@@ -151,127 +160,147 @@
             </div>
             <span>Ready to Serve</span>
         </div>
+        <!-- Active Orange Tab -->
         <div class="nav-item active">
             <div class="nav-icon-wrapper">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff4d00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                     <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                 </svg>
-                <span class="nav-badge" id="bottomNavBadge">4</span>
+                <span class="nav-badge" id="requestsBadge">4</span>
             </div>
             <span>Requests</span>
         </div>
     </nav>
 
     <script>
-        let currentFilter = 'Call Waiter';
-
         document.addEventListener('DOMContentLoaded', function() {
-            renderRequests();
-        });
-
-        window.switchTab = function(type) {
-            currentFilter = type;
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-                btn.classList.add('inactive-icon');
-            });
-            if(type === 'Call Waiter') {
-                document.getElementById('tabCallWaiter').classList.add('active');
-                document.getElementById('tabCallWaiter').classList.remove('inactive-icon');
-            } else {
-                document.getElementById('tabRequestBill').classList.add('active');
-                document.getElementById('tabRequestBill').classList.remove('inactive-icon');
-            }
-            renderRequests();
-        };
-
-        function timeAgo(timestamp) {
-            const seconds = Math.floor((Date.now() - timestamp) / 1000);
-            let interval = seconds / 60;
-            if (interval < 1) return "just now";
-            if (interval < 60) return Math.floor(interval) + " mins ago";
-            interval = interval / 60;
-            if (interval < 24) return Math.floor(interval) + " hours ago";
-            return Math.floor(interval / 24) + " days ago";
-        }
-
-        function renderRequests() {
             const container = document.getElementById('requestListContainer');
-            let requests = JSON.parse(localStorage.getItem('waiterRequests')) || [];
+            const emptyMsg = document.getElementById('emptyMsg');
+            const badge = document.getElementById('requestsBadge');
+            const countSpan = document.getElementById('requestCount');
+            let currentFilter = 'CALL'; // Default active tab
 
-            // Update Counts
-            const callWaiter = requests.filter(r => r.type === 'Call Waiter');
-            const reqBill = requests.filter(r => r.type === 'Request Bill');
-            document.getElementById('callWaiterCount').textContent = callWaiter.length;
-            document.getElementById('billCount').textContent = reqBill.length;
-            document.getElementById('totalRequestsCount').textContent = `(${requests.length})`;
-            document.getElementById('bottomNavBadge').textContent = requests.length;
+            // 1. Load existing orders or fallback to mock data (matching the screenshot)
+            let requests = JSON.parse(localStorage.getItem('requestsData'));
 
-            // Filter orders based on active tab
-            let filteredRequests = requests.filter(r => r.type === currentFilter);
-
-            if (filteredRequests.length === 0) {
-                container.innerHTML = `<div class="empty-msg">No ${currentFilter} requests found.</div>`;
-                return;
+            // 2. FALLBACK: If empty, load the exact screenshot example data
+            if (!requests || requests.length === 0) {
+                requests = [
+                    { "id": 1, "type": "CALL", "title": "Call Waiter", "table": "Table 05", "time": "10:05 AM", "ago": "2 mins ago" },
+                    { "id": 2, "type": "CALL", "title": "Call Waiter", "table": "Table 09", "time": "10:22 AM", "ago": "1 min ago" },
+                    { "id": 3, "type": "BILL", "title": "Request Bill", "table": "Table 12", "time": "10:30 AM", "ago": "Just now" },
+                    { "id": 4, "type": "BILL", "title": "Request Bill", "table": "Table 07", "time": "10:15 AM", "ago": "10 mins ago" }
+                ];
+                localStorage.setItem('requestsData', JSON.stringify(requests));
             }
 
-            let html = '';
-            filteredRequests.forEach((req, index) => {
-                // Find the real index in the main array
-                const realIndex = requests.findIndex(r => r.timestamp === req.timestamp && r.table === req.table);
-                const timeAgoStr = timeAgo(req.timestamp);
+            function renderRequests(filterType) {
+                const filtered = requests.filter(r => r.type === filterType);
+                container.innerHTML = '';
+                
+                // Update Counts dynamically in the header toggle
+                const callCount = requests.filter(r => r.type === 'CALL').length;
+                const billCount = requests.filter(r => r.type === 'BILL').length;
+                
+                // Update Toggle Text Counts
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    const type = btn.getAttribute('data-type');
+                    const count = type === 'CALL' ? callCount : billCount;
+                    const label = type === 'CALL' ? 'Call Waiter' : 'Request Bill';
+                    const svg = btn.querySelector('svg').outerHTML;
+                    btn.innerHTML = `${svg} ${label} (${count})`;
+                });
 
-                html += `
-                    <div class="request-card">
-                        <div class="card-top">
-                            <div class="req-info">
-                                <div class="req-icon-box">
-                                    ${req.type === 'Call Waiter' ? `
-                                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                                    ` : `
-                                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line><path d="M16 13h-3"></path><path d="M16 17h-3"></path><circle cx="8" cy="15" r="1" fill="#ff4d00"/></svg>
-                                    `}
+                // Update Global Badge
+                const totalCount = callCount + billCount;
+                badge.textContent = totalCount;
+                countSpan.textContent = `(${totalCount})`;
+
+                if (filtered.length === 0) {
+                    emptyMsg.style.display = 'block';
+                    return;
+                } else {
+                    emptyMsg.style.display = 'none';
+                }
+
+                filtered.forEach((req) => {
+                    const cardHTML = `
+                        <div class="req-card" data-id="${req.id}">
+                            <div class="card-top">
+                                <div class="card-header-left">
+                                    <div class="req-icon-box">
+                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff4b00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            ${req.type === 'CALL' 
+                                              ? `<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path>` 
+                                              : `<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline>`
+                                            }
+                                        </svg>
+                                    </div>
+                                    <div class="req-info">
+                                        <div class="req-title">${req.title}</div>
+                                        <div class="req-subtitle">${req.table}</div>
+                                        <div class="req-time">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                            ${req.time} • ${req.ago}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="req-details">
-                                    <div class="req-title">${req.type}</div>
-                                    <div class="req-table">${req.table}</div>
-                                    <div class="req-time-row">
-                                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                        ${req.time} • ${timeAgoStr}
+                                <div class="card-header-right">
+                                    <span class="badge-status">PENDING</span>
+                                    <div class="chevron-right">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                     </div>
                                 </div>
                             </div>
-                            <div class="status-badge-pending">PENDING</div>
+                            <div class="card-actions">
+                                <button class="btn-cancel">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                                    Cancel Request
+                                </button>
+                                <button class="btn-complete">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                    Mark as Completed
+                                </button>
+                            </div>
                         </div>
+                    `;
+                    container.insertAdjacentHTML('beforeend', cardHTML);
+                });
 
-                        <div class="card-actions">
-                            <button class="btn-cancel-req" onclick="cancelRequest(${realIndex})">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-                                Cancel Request
-                            </button>
-                            <button class="btn-complete-req" onclick="completeRequest(${realIndex})">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                Mark as Completed
-                            </button>
-                        </div>
-                    </div>
-                `;
+                // Attach event listeners to buttons
+                container.querySelectorAll('.btn-cancel, .btn-complete').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const card = this.closest('.req-card');
+                        const id = parseInt(card.getAttribute('data-id'));
+                        
+                        card.classList.add('completed');
+                        
+                        setTimeout(() => {
+                            const indexToRemove = requests.findIndex(r => r.id === id);
+                            if (indexToRemove > -1) {
+                                requests.splice(indexToRemove, 1);
+                                localStorage.setItem('requestsData', JSON.stringify(requests));
+                            }
+                            renderRequests(currentFilter);
+                        }, 300);
+                    });
+                });
+            }
+
+            // Tab Switching Logic
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.getAttribute('data-type');
+                    renderRequests(currentFilter);
+                });
             });
-            container.innerHTML = html;
-        }
 
-        window.cancelRequest = function(index) {
-            let requests = JSON.parse(localStorage.getItem('waiterRequests')) || [];
-            requests.splice(index, 1);
-            localStorage.setItem('waiterRequests', JSON.stringify(requests));
-            renderRequests();
-        };
-
-        window.completeRequest = function(index) {
-            // In this UI, 'Mark as Completed' also removes it from the pending list
-            cancelRequest(index);
-        };
+            // Initial Render
+            renderRequests(currentFilter);
+        });
     </script>
 </body>
 </html>
