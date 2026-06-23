@@ -253,7 +253,6 @@
     <div class="container">
         <!-- Top Header -->
         <header class="top-header">
-            <!-- FIXED: Moved up one folder (../) to get back to menu.html in root -->
             <div class="header-icon" style="display: flex; align-items: center;" onclick="window.location.href='../menu.html'">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -424,7 +423,6 @@
 
     <!-- Bottom Navigation -->
     <nav class="bottom-nav">
-        <!-- FIXED: Updated bottom nav links to point to correct paths -->
         <div class="nav-item active" onclick="window.location.href='waiter-dashboard.html'">
             <div class="nav-icon-wrapper">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -435,6 +433,7 @@
             </div>
             <span>New Orders</span>
         </div>
+        <!-- Navigates to Root waiter-verification.html -->
         <div class="nav-item" onclick="window.location.href='../waiter-verification.html'">
             <div class="nav-icon-wrapper">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -513,7 +512,7 @@
                         const remainingCards = orderContainer.querySelectorAll('.order-card').length;
                         orderCountSpan.textContent = `(${remainingCards})`;
 
-                        // FIXED: Navigate to root level verification page
+                        // Navigate to root level verification page
                         window.location.href = '../waiter-verification.html';
                     } else {
                         alert('This is an ONLINE order. It will proceed directly to preparation.');
